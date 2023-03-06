@@ -21,7 +21,14 @@
         ${alias}.phone,
         ${alias}.image
     </sql>
-    
+
+    <select id="fetchAll" resultMap="accountResultMap">
+      SELECT <include refid="accountSelectColumns">
+              <property name="alias" value="ACCOUNT"/>
+             </include>
+        FROM ACCOUNT
+    </select>
+
     <select id="fetchById" parameterType="Long" resultMap="accountResultMap">
       SELECT <include refid="accountSelectColumns">
                 <property name="alias" value="ACCOUNT"/>
