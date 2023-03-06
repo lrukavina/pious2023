@@ -8,5 +8,6 @@
     </typeAliases>
     <mappers>
         <mapper resource="mappers/AccountRepository.xml"/>
+        <mapper resource="mappers/NotificationRepository.xml"/>
     </mappers>
 </configuration>
