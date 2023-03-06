@@ -16,11 +16,11 @@ insert into role(role_type, account_id) values
 insert into professor(first_name, last_name, title, location, consultations, account_id) values
 ('Ognjen', 'Mitrović', 'dr. sc.', 'Vrbik 8', 'Ponedjeljkom i petkom od 13:00 do 14:00', 4);
 
-insert into student(first_name, last_name, occupation, address, scholarship, account_id) values
-('Tin', 'Fiolić', 'Frontend Developer', 'Vrbik 8, 10 000 Zagreb', 0, 1),
-('Dominik', 'Milošević', 'Tester', 'Vrbik 8, 10 000 Zagreb', 0, 2),
-('Silvio', 'Glogović', 'Project Manager', 'Vrbik 8, 10 000 Zagreb', 0, 3),
-('Luka', 'Rukavina', 'Backend Develooper', 'Vrbik 8, 10 000 Zagreb', 0, 4);
+insert into student(jmbag,first_name, last_name, occupation, address, scholarship, account_id) values
+('0000000000', 'Tin', 'Fiolić', 'Frontend Developer', 'Vrbik 8, 10 000 Zagreb', 0, 1),
+('0000000000', 'Dominik', 'Milošević', 'Tester', 'Vrbik 8, 10 000 Zagreb', 0, 2),
+('0000000000', 'Silvio', 'Glogović', 'Project Manager', 'Vrbik 8, 10 000 Zagreb', 0, 3),
+('0000000000', 'Luka', 'Rukavina', 'Backend Develooper', 'Vrbik 8, 10 000 Zagreb', 0, 4);
 
 insert into course(name, ects_number, description, semester, literature) values
 ('Programsko inženjerstvo u otvorenim sustavima', 6, 'Pružiti detaljni pregled cijelog područja inženjerskog razvoja otvorenih sustava i naučiti studente metodološkom razvoju programskih proizvoda', 2, 'Manger,R.: Softversko inženjerstvo, skripta, nadopunjeno drugo izdanje, Sveučilište u Zagrebu, Prirodoslovno-matematički fakultet, Matematički odsjek, Zagreb, 2013.');

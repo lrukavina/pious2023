@@ -21,17 +21,20 @@ create table if not exists professor(
     title varchar (255) not null,
     location varchar (255),
     consultations varchar (255),
-    account_id bigint not null
+    account_id bigint not null,
+    constraint fk_professor_account foreign key (account_id) references account(id)
 );
 
 create table if not exists student(
     id identity,
+    jmbag varchar (10) not null,
     first_name varchar (255) not null,
     last_name varchar (255) not null,
     occupation varchar (255),
     address varchar (255) not null,
     scholarship int,
-    account_id bigint not null
+    account_id bigint not null,
+    constraint fk_student_account foreign key (account_id) references account(id)
 );
 
 create table if not exists course(
@@ -64,4 +67,24 @@ create table if not exists schedule(
     day_of_the_week int not null,
     course_id bigint not null,
     constraint fk_schedule_course foreign key (course_id) references course(id)
+);
+
+create table if not exists todo(
+    id identity,
+    tstamp_from timestamp not null,
+    tstamp_to timestamp not null,
+    header varchar (255) not null,
+    description text,
+    account_id  bigint not null,
+    constraint fk_todo_account foreign key (account_id) references account(id)
+);
+
+create table if not exists notification(
+    id identity,
+    tstamp_from timestamp not null,
+    tstamp_to timestamp not null,
+    header varchar (255) not null,
+    description text not null,
+    course_id bigint not null,
+    constraint fk_course_notification foreign key (course_id) references course(id)
 );
