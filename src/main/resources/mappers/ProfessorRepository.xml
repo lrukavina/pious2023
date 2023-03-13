@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hr.tvz.pious2023.model.professor.ProfessorRepository">
+    <resultMap id="professorResultMap" type="Professor">
+        <id property="id" column="id" />
+        <id property="firstName" column="first_name" />
+        <id property="lastName" column="last_name" />
+        <id property="title" column="title" />
+        <id property="location" column="location" />
+        <id property="consultations" column="consultations" />
+        <id property="accountId" column="account_id" />
+    </resultMap>
+
+    <sql id="professorSelectColumns">
+        ${alias}.id,
+        ${alias}.first_name,
+        ${alias}.last_name,
+        ${alias}.title,
+        ${alias}.location,
+        ${alias}.consultations,
+        ${alias}.account_id
+    </sql>
+
+    <select id="fetchById" parameterType="Long" resultMap="professorResultMap">
+        SELECT <include refid="professorSelectColumns">
+                <property name="alias" value="PROFESSOR"/>
+               </include>
+        FROM PROFESSOR
+        WHERE ID = #{id}
+    </select>
+</mapper>

@@ -9,5 +9,6 @@
     <mappers>
         <mapper resource="mappers/AccountRepository.xml"/>
         <mapper resource="mappers/NotificationRepository.xml"/>
+        <mapper resource="mappers/ProfessorRepository.xml"/>
     </mappers>
 </configuration>
