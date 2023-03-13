@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hr.tvz.pious2023.model.course.CourseRepository">
+    <resultMap id="courseResultMap" type="Course">
+        <id property="id" column="id" />
+        <id property="name" column="name" />
+        <id property="ects" column="ects_number" />
+        <id property="description" column="description" />
+        <id property="semester" column="semester" />
+        <id property="literature" column="literature" />
+    </resultMap>
+
+    <sql id="courseSelectColumns">
+        ${alias}.id,
+        ${alias}.name,
+        ${alias}.ects_number,
+        ${alias}.description,
+        ${alias}.semester,
+        ${alias}.literature
+    </sql>
+
+    <select id="fetchById" parameterType="Long" resultMap="courseResultMap">
+        SELECT <include refid="courseSelectColumns">
+                <property name="alias" value="COURSE"/>
+               </include>
+        FROM COURSE
+        WHERE ID = #{id}
+    </select>
+
+</mapper>
