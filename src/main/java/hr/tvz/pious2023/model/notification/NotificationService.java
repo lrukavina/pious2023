@@ -7,7 +7,7 @@ public interface NotificationService {
    * Fetches all notifications by course id
    *
    * @param id course id
-   * @return notifications
+   * @return notifications dto objects
    */
   List<NotificationDto> fetchAllByCourseId(Long id);
 }
