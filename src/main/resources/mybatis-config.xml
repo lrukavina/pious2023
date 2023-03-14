@@ -11,5 +11,6 @@
         <mapper resource="mappers/NotificationRepository.xml"/>
         <mapper resource="mappers/ProfessorRepository.xml"/>
         <mapper resource="mappers/CourseRepository.xml"/>
+        <mapper resource="mappers/StudentRepository.xml"/>
     </mappers>
 </configuration>
