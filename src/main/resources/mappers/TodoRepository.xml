@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hr.tvz.pious2023.model.todo.TodoRepository">
+    <resultMap id="todoResultMap" type="Todo">
+        <id property="id" column="id" />
+        <id property="fromDateTime" column="tstamp_from" />
+        <id property="toDateTime" column="tstamp_to" />
+        <id property="header" column="header" />
+        <id property="description" column="description" />
+        <id property="accountId" column="account_id" />
+    </resultMap>
+
+    <sql id="todoSelectColumns">
+        ${alias}.id,
+        ${alias}.tstamp_from,
+        ${alias}.tstamp_to,
+        ${alias}.header,
+        ${alias}.description,
+        ${alias}.account_id
+    </sql>
+
+    <select id="fetchByAccountId" parameterType="Long" resultMap="todoResultMap">
+        SELECT <include refid="todoSelectColumns">
+                <property name="alias" value="TODO"/>
+               </include>
+          FROM TODO
+         WHERE ACCOUNT_ID = #{id}
+    </select>
+</mapper>

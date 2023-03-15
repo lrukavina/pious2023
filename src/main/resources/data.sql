@@ -40,3 +40,7 @@ insert into schedule(tstamp_from, tstamp_to, day_of_the_week, course_id) values
 
 insert into notification(tstamp_from, tstamp_to, header, description, professor_id, course_id) values
 ('2023-02-27 17:00:00', '2023-03-01 22:00:00', 'Obavijest o održavanju nastave', 'Dana 1.3.2023. nastava će se održavati online.', 1, 1);
+
+insert into todo(tstamp_from, tstamp_to, header, description, account_id) values
+('2023-02-27 17:00:00', '2023-06-30 17:00:00', 'Obavljanje studentskih obaveza', 'Odlazak na fakultet svaki tjedan i odrada svih obaveza', 1),
+('2023-02-27 17:00:00', '2023-06-30 17:00:00', 'Odlazak na posao', 'Odlazak na posao svaki tjedan i odrada svih obaveza', 1);
