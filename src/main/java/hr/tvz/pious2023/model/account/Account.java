@@ -3,7 +3,7 @@ package hr.tvz.pious2023.model.account;
 import lombok.Builder;
 import lombok.Data;
 
-/** Domain class for Account. */
+/** Domain class for {@link Account}. */
 @Data
 @Builder
 public class Account {

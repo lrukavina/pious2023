@@ -1,19 +1,17 @@
-package hr.tvz.pious2023.model.notification;
+package hr.tvz.pious2023.model.schedule;
 
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
-/** Domain class for {@link Notification}. */
+/** Domain class for {@link Schedule}. */
 @Data
 @Builder
-public class Notification {
+public class Schedule {
   private Long id;
   private LocalDateTime fromDateTime;
   private LocalDateTime toDateTime;
-  private String header;
-  private String description;
-  private Long professorId;
+  private Integer dayOfWeek;
   private Long courseId;
 }

@@ -3,7 +3,7 @@ package hr.tvz.pious2023.model.course;
 import lombok.Builder;
 import lombok.Data;
 
-/** Domain class for Course. */
+/** Domain class for {@link Course}. */
 @Data
 @Builder
 public class Course {
