@@ -43,7 +43,7 @@ insert into student_course(student_id, course_id) values
 (4, 1);
 
 insert into schedule(tstamp_from, tstamp_to, day_of_the_week, course_id) values
-('2023-02-27 17:00:00', '2023-06-30 17:00:00', 0, 1),
+('2023-02-27 17:00:00', '2023-06-30 21:00:00', 0, 1),
 ('2023-02-28 17:00:00', '2023-06-30 17:00:00', 1, 2);
 
 insert into notification(tstamp_from, tstamp_to, header, description, professor_id, course_id) values
