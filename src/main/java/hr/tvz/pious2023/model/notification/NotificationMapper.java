@@ -13,7 +13,8 @@ public class NotificationMapper {
         .toDateTime(Utils.dateTimeToString(notification.getToDateTime()))
         .header(notification.getHeader())
         .description(notification.getDescription())
-        .author(professor.getFirstName() + " " + professor.getLastName())
+        .author(
+            professor.getTitle() + " " + professor.getFirstName() + " " + professor.getLastName())
         .build();
   }
 }
