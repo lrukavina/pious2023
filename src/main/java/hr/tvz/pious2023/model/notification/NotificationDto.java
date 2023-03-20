@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 public class NotificationDto {
+  private String course;
   private String fromDateTime;
   private String toDateTime;
   private String header;

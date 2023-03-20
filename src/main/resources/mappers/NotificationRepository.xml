@@ -30,6 +30,8 @@
                </include>
           FROM NOTIFICATION
          WHERE COURSE_ID = #{id}
+           AND TSTAMP_FROM &lt;= CURRENT_TIMESTAMP
+           AND TSTAMP_TO &gt;= CURRENT_TIMESTAMP
     </select>
 
 </mapper>
