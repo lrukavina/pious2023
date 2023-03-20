@@ -34,4 +34,22 @@ public class NotificationServiceImpl implements NotificationService {
     }
     return notificationsDto;
   }
+
+  @Override
+  public List<NotificationDto> fetchAllByStudentId(Long id) {
+    List<Notification> notifications = notificationRepository.fetchAllByStudentId(id);
+    List<ProfessorDto> professorDtos =
+        notifications.stream()
+            .map(notification -> professorService.fetchById(notification.getProfessorId()))
+            .toList();
+
+    List<NotificationDto> notificationsDto = new ArrayList<>();
+    for (int i = 0; i < notifications.size(); i++) {
+      CourseDto courseDto = courseService.fetchById(notifications.get(i).getCourseId());
+      notificationsDto.add(
+          NotificationMapper.domainToDto(notifications.get(i), professorDtos.get(i), courseDto));
+    }
+    return notificationsDto;
+  }
+  // todo get rid of duplicated code
 }

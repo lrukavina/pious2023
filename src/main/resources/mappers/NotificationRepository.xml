@@ -34,4 +34,17 @@
            AND TSTAMP_TO &gt;= CURRENT_TIMESTAMP
     </select>
 
+    <select id="fetchAllByStudentId" parameterType="Long" resultMap="notificationResultMap">
+            SELECT <include refid="notificationSelectColumns">
+                    <property name="alias" value="NOTIFICATION"/>
+                   </include>
+              FROM notification
+        INNER JOIN course on course.id = notification.course_id
+        INNER JOIN student_course on course.id =  student_course.course_id
+        INNER JOIN student on student_id = student.id
+             WHERE student.id = #{id}
+               AND tstamp_from &lt;= CURRENT_TIMESTAMP
+               AND tstamp_to &gt;= CURRENT_TIMESTAMP
+    </select>
+
 </mapper>

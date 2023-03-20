@@ -19,4 +19,9 @@ public class NotificationController {
   public List<NotificationDto> getAllByCourseId(@PathVariable final String id) {
     return notificationService.fetchAllByCourseId(Long.valueOf(id));
   }
+
+  @GetMapping("/student/{id}")
+  public List<NotificationDto> getAllByStudentId(@PathVariable final String id) {
+    return notificationService.fetchAllByStudentId(Long.valueOf(id));
+  }
 }

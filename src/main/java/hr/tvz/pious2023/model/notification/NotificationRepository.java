@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 @Mapper
 public interface NotificationRepository {
   List<Notification> fetchAllByCourseId(Long id);
+
+  List<Notification> fetchAllByStudentId(Long id);
 }
