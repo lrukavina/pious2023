@@ -30,4 +30,14 @@
         WHERE ID = #{id}
     </select>
 
+    <select id="fetchAllByStudentId" parameterType="Long" resultMap="courseResultMap">
+        SELECT <include refid="courseSelectColumns">
+                <property name="alias" value="COURSE"/>
+               </include>
+        FROM course
+        INNER JOIN student_course on course.id = course_id
+        INNER JOIN student on student_id = student.id
+        WHERE student.id = #{id}
+    </select>
+
 </mapper>
