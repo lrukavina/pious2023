@@ -6,6 +6,7 @@ public class CourseMapper {
 
   public static CourseDto domainToDto(Course course) {
     return CourseDto.builder()
+        .id(course.getId())
         .name(course.getName())
         .ects(course.getEcts())
         .description(course.getDescription())

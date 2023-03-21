@@ -13,8 +13,13 @@ import java.util.List;
 public class ScheduleController {
   private final ScheduleService scheduleService;
 
-  @GetMapping("/{id}")
+  @GetMapping("/course/{id}")
   public List<ScheduleDto> getByCourseId(@PathVariable final String id) {
     return scheduleService.fetchByCourseId(Long.valueOf(id));
+  }
+
+  @GetMapping("/student/{id}")
+  public List<ScheduleDto> getByStudentId(@PathVariable final String id) {
+    return scheduleService.fetchByStudentId(Long.valueOf(id));
   }
 }

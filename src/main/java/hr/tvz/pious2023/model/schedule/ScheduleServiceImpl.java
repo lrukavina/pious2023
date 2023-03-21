@@ -34,4 +34,15 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     return scheduleDtos;
   }
+
+  @Override
+  public List<ScheduleDto> fetchByStudentId(Long id) {
+    List<CourseDto> courseDtos = courseService.fetchAllByStudentId(id);
+
+    List<ScheduleDto> scheduleDtos = new ArrayList<>();
+    for (CourseDto courseDto : courseDtos) {
+      scheduleDtos.addAll(fetchByCourseId(courseDto.getId()));
+    }
+    return scheduleDtos;
+  }
 }

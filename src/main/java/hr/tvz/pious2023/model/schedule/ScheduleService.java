@@ -7,7 +7,14 @@ public interface ScheduleService {
    * Fetches Schedule by course id
    *
    * @param id course id
-   * @return schedule Dto object
+   * @return schedule Dto objects
    */
   List<ScheduleDto> fetchByCourseId(Long id);
+
+  /**
+   * Fetches Schedule by student id
+   * @param id student id
+   * @return schedule Dto objects
+   */
+  List<ScheduleDto> fetchByStudentId(Long id);
 }
