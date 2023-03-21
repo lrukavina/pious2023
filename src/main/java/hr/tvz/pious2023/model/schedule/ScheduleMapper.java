@@ -1,5 +1,6 @@
 package hr.tvz.pious2023.model.schedule;
 
+import hr.tvz.pious2023.model.Constants;
 import hr.tvz.pious2023.model.course.CourseDto;
 import hr.tvz.pious2023.model.professor.ProfessorDto;
 
@@ -13,7 +14,8 @@ import java.util.stream.Collectors;
 public class ScheduleMapper {
   private ScheduleMapper() {}
 
-  public static List<ScheduleDto> getAllScheduleEntries(Schedule schedule) {
+  public static List<ScheduleDto> getAllScheduleEntries(
+      Schedule schedule, CourseDto courseDto, ProfessorDto professorDto) {
     String timeFrom =
         schedule.getFromDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
     String timeTo =
@@ -38,13 +40,15 @@ public class ScheduleMapper {
     }
 
     return scheduleEntries.stream()
-        .map(scheduleDto -> domainToDto(scheduleDto, null, null))
+        .map(scheduleDto -> domainToDto(scheduleDto, courseDto, professorDto))
         .collect(Collectors.toList());
   }
 
   public static ScheduleDto domainToDto(
       ScheduleDto scheduleDto, CourseDto courseDto, ProfessorDto professorDto) {
+    scheduleDto.setTitle(courseDto.getName());
+    scheduleDto.setLocation(Constants.universityName);
+    scheduleDto.setProfessor(professorDto.getFirstName() + " " + professorDto.getLastName());
     return scheduleDto;
-    // todo finish implementation
   }
 }

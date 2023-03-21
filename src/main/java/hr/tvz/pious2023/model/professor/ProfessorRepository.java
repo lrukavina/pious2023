@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ProfessorRepository {
   Professor fetchById(Long id);
+
+  Professor fetchByCourseId(Long id);
 }

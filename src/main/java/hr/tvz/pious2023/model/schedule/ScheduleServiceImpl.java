@@ -21,15 +21,14 @@ public class ScheduleServiceImpl implements ScheduleService {
   @Override
   public List<ScheduleDto> fetchByCourseId(Long id) {
     CourseDto courseDto = courseService.fetchById(id);
-    // todo implement fetching professor by course id
-    ProfessorDto professorDto = professorService.fetchById(id);
 
+    ProfessorDto professorDto = professorService.fetchByCourseId(id);
     List<Schedule> schedules = scheduleRepository.fetchByCourseId(id);
 
     List<ScheduleDto> scheduleDtos = new ArrayList<>();
     for (Schedule schedule : schedules) {
       List<ScheduleDto> entries;
-      entries = ScheduleMapper.getAllScheduleEntries(schedule);
+      entries = ScheduleMapper.getAllScheduleEntries(schedule, courseDto, professorDto);
       scheduleDtos.addAll(entries);
     }
 

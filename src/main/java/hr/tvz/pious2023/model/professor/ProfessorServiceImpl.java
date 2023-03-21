@@ -13,4 +13,9 @@ public class ProfessorServiceImpl implements ProfessorService {
   public ProfessorDto fetchById(Long id) {
     return ProfessorMapper.domainToDto(professorRepository.fetchById(id));
   }
+
+  @Override
+  public ProfessorDto fetchByCourseId(Long id) {
+    return ProfessorMapper.domainToDto(professorRepository.fetchByCourseId(id));
+  }
 }

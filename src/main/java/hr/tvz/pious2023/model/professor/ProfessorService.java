@@ -8,4 +8,12 @@ public interface ProfessorService {
    * @return professor Dto object
    */
   ProfessorDto fetchById(Long id);
+
+  /**
+   * Fetches Professor by course id
+   *
+   * @param id course id
+   * @return professor Dto object
+   */
+  ProfessorDto fetchByCourseId(Long id);
 }

@@ -31,4 +31,15 @@
         FROM PROFESSOR
         WHERE ID = #{id}
     </select>
+
+    <select id="fetchByCourseId" parameterType="Long" resultMap="professorResultMap">
+        SELECT <include refid="professorSelectColumns">
+                <property name="alias" value="PROFESSOR"/>
+               </include>
+        FROM professor
+        INNER JOIN professor_course on professor.id = professor_id
+        INNER JOIN course on course_id = course.id
+        WHERE course.id = #{id}
+    </select>
+
 </mapper>
