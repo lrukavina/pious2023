@@ -1,5 +1,6 @@
 package hr.tvz.pious2023.model.professor;
 
+import hr.tvz.pious2023.model.account.AccountDto;
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,6 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ProfessorDto {
+  private AccountDto account;
   private String firstName;
   private String lastName;
   private String title;
