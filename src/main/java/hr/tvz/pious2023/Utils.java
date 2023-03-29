@@ -23,11 +23,20 @@ public class Utils {
 
     return builder
         .append(bodyHeader)
-        .append(System.getProperty("line.separator"))
+        .append("<br>")
         .append(jmbag)
-        .append(System.getProperty("line.separator"))
-        .append(System.getProperty("line.separator"))
+        .append("<br>")
+        .append("Šalje Vam e-mail:")
+        .append("<br>")
+        .append("<br>")
+        .append("<hr>")
         .append(body)
+        .append("<br>")
+        .append("<hr>")
+        .append("<b><i> Molimo odgovorite na studentov e-mail: </i></b>")
+        .append("<a href = \"mailto: lrukavina@tvz.hr\">lrukavina@tvz.hr</a>")
+        .append("<br>")
+        .append("<b><i>Ovo je automatska poruka, molimo nemojte odgovarati na nju. </b></i>")
         .toString();
   }
 }
