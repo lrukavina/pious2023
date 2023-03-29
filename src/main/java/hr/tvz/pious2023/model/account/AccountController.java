@@ -23,4 +23,9 @@ public class AccountController {
   public AccountDto getAccountById(@PathVariable final String id) {
     return accountService.fetchByAccountId(Long.valueOf(id));
   }
+
+  @GetMapping("/hello")
+  public String getHello() {
+    return "Hello PIOUS 2023";
+  }
 }
