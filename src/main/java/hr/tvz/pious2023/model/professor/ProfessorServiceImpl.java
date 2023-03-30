@@ -1,5 +1,7 @@
 package hr.tvz.pious2023.model.professor;
 
+import hr.tvz.pious2023.model.account.AccountDto;
+import hr.tvz.pious2023.model.account.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,14 +10,17 @@ import org.springframework.stereotype.Service;
 public class ProfessorServiceImpl implements ProfessorService {
 
   private final ProfessorRepository professorRepository;
+  private final AccountService accountService;
 
   @Override
   public ProfessorDto fetchById(Long id) {
-    return ProfessorMapper.domainToDto(professorRepository.fetchById(id));
+    AccountDto account = accountService.fetchByProfessorId(id);
+    return ProfessorMapper.domainToDto(professorRepository.fetchById(id), account);
   }
 
   @Override
   public ProfessorDto fetchByCourseId(Long id) {
-    return ProfessorMapper.domainToDto(professorRepository.fetchByCourseId(id));
+    AccountDto account = accountService.fetchByProfessorId(id);
+    return ProfessorMapper.domainToDto(professorRepository.fetchByCourseId(id), account);
   }
 }

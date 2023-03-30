@@ -41,4 +41,24 @@
        WHERE account.id = #{id}
     </select>
 
+    <select id="fetchByStudentId" parameterType="Long" resultMap="accountResultMap">
+        SELECT  <include refid="accountSelectColumns">
+        <property name="alias" value="ACCOUNT"/>
+    </include>
+        FROM account
+        INNER JOIN student on account.id = student.account_id
+        INNER JOIN role on account.id = role.account_id
+        WHERE student.id = #{id}
+    </select>
+
+    <select id="fetchByProfessorId" parameterType="Long" resultMap="accountResultMap">
+        SELECT  <include refid="accountSelectColumns">
+        <property name="alias" value="ACCOUNT"/>
+    </include>
+        FROM account
+        INNER JOIN professor on account.id = professor.account_id
+        INNER JOIN role on account.id = role.account_id
+        WHERE professor.id = #{id}
+    </select>
+
 </mapper>

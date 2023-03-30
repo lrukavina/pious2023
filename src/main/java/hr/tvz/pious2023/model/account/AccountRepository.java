@@ -18,4 +18,28 @@ public interface AccountRepository {
    * @return account
    */
   Account fetchById(Long id);
+
+  /**
+   * Fetches account from database by {@link hr.tvz.pious2023.model.student.Student} id.
+   *
+   * @param id student id
+   * @return student's account
+   */
+  Account fetchByStudentId(Long id);
+
+  /**
+   * Fetches account from database by {@link hr.tvz.pious2023.model.professor.Professor} id.
+   *
+   * @param id professor id
+   * @return professor's account
+   */
+  Account fetchByProfessorId(Long id);
+
+  /**
+   * Registers new account (inserts new account into database)
+   *
+   * @param account account that is inserted
+   * @return inserted account
+   */
+  Account registerAccount(Account account);
 }

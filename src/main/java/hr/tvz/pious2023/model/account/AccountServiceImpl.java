@@ -22,4 +22,14 @@ public class AccountServiceImpl implements AccountService {
   public AccountDto fetchByAccountId(Long id) {
     return AccountMapper.domainToDto(accountRepository.fetchById(id));
   }
+
+  @Override
+  public AccountDto fetchByStudentId(Long id) {
+    return AccountMapper.domainToDto(accountRepository.fetchByStudentId(id));
+  }
+
+  @Override
+  public AccountDto fetchByProfessorId(Long id) {
+    return AccountMapper.domainToDto(accountRepository.fetchByProfessorId(id));
+  }
 }
