@@ -10,6 +10,7 @@ public class AccountMapper {
         .email(account.getEmail())
         .phone(account.getPhone())
         .image(account.getImage())
+        .role(account.getRole())
         .build();
   }
 }

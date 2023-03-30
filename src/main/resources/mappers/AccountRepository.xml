@@ -11,6 +11,7 @@
         <id property="email" column="email" />
         <id property="phone" column="phone" />
         <id property="image" column="image" />
+        <id property="role" column="role_type" />
     </resultMap>
 
     <sql id="accountSelectColumns">
@@ -19,22 +20,25 @@
         ${alias}.password,
         ${alias}.email,
         ${alias}.phone,
-        ${alias}.image
+        ${alias}.image,
+        role_type
     </sql>
 
     <select id="fetchAll" resultMap="accountResultMap">
-      SELECT <include refid="accountSelectColumns">
-              <property name="alias" value="ACCOUNT"/>
-             </include>
-        FROM ACCOUNT
+          SELECT  <include refid="accountSelectColumns">
+                   <property name="alias" value="ACCOUNT"/>
+                  </include>
+            FROM ACCOUNT
+      INNER JOIN role on account.id = role.account_id
     </select>
 
     <select id="fetchById" parameterType="Long" resultMap="accountResultMap">
-      SELECT <include refid="accountSelectColumns">
-                <property name="alias" value="ACCOUNT"/>
-               </include>
-        FROM ACCOUNT
-       WHERE ID = #{id}
+         SELECT  <include refid="accountSelectColumns">
+                  <property name="alias" value="ACCOUNT"/>
+                 </include>
+            FROM account
+      INNER JOIN role on account.id = role.account_id
+       WHERE account.id = #{id}
     </select>
 
 </mapper>
