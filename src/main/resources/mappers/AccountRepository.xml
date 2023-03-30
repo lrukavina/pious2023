@@ -61,4 +61,35 @@
         WHERE professor.id = #{id}
     </select>
 
+    <select id="fetchLastByUsername" parameterType="String" resultMap="accountResultMap">
+            SELECT    <include refid="accountSelectColumns">
+                       <property name="alias" value="ACCOUNT"/>
+                      </include>
+              FROM account
+        INNER JOIN role on account.id = role.account_id
+             WHERE account.username like #{username}
+          ORDER BY account.id DESC
+          LIMIT 1
+    </select>
+
+    <insert id="registerAccount" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO account (username,
+                             password,
+                             email,
+                             phone,
+                             image)
+             VALUES (#{username, jdbcType=VARCHAR},
+                     #{password, jdbcType=VARCHAR},
+                     #{email, jdbcType=VARCHAR},
+                     #{phone, jdbcType=VARCHAR},
+                     #{image, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertRole" useGeneratedKeys="true">
+        INSERT INTO role (role_type,
+                          account_id)
+        VALUES (#{roleType, jdbcType=VARCHAR},
+                #{accountId, jdbcType=BIGINT})
+    </insert>
+
 </mapper>

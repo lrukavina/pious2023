@@ -33,4 +33,15 @@
         FROM STUDENT
         WHERE ID = #{id}
     </select>
+
+    <insert id="registerStudent" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO student (jmbag,
+                             first_name,
+                             last_name,
+                             account_id)
+        VALUES (#{jmbag, jdbcType=VARCHAR},
+                #{firstName, jdbcType=VARCHAR},
+                #{lastName, jdbcType=VARCHAR},
+                #{accountId, jdbcType=BIGINT})
+    </insert>
 </mapper>

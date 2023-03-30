@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface StudentRepository {
   Student fetchById(Long id);
+
+  void registerStudent(Student student);
 }

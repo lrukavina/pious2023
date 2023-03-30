@@ -1,6 +1,8 @@
 package hr.tvz.pious2023.model.account;
 
+import hr.tvz.pious2023.model.role.Role;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +22,14 @@ public interface AccountRepository {
   Account fetchById(Long id);
 
   /**
+   * Fetches the latest account from database by account username.
+   *
+   * @param username account username
+   * @return latest account
+   */
+  Account fetchLastByUsername(String username);
+
+  /**
    * Fetches account from database by {@link hr.tvz.pious2023.model.student.Student} id.
    *
    * @param id student id
@@ -36,10 +46,12 @@ public interface AccountRepository {
   Account fetchByProfessorId(Long id);
 
   /**
-   * Registers new account (inserts new account into database)
+   * Registers new account (inserts new account into database).
    *
    * @param account account that is inserted
    * @return inserted account
    */
-  Account registerAccount(Account account);
+  Integer registerAccount(Account account);
+
+  Integer insertRole(@Param("roleType") Role role, @Param("accountId") Long accountId);
 }

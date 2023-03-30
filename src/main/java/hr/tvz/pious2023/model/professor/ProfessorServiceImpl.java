@@ -23,4 +23,9 @@ public class ProfessorServiceImpl implements ProfessorService {
     AccountDto account = accountService.fetchByProfessorId(id);
     return ProfessorMapper.domainToDto(professorRepository.fetchByCourseId(id), account);
   }
+
+  @Override
+  public void registerProfessor(Professor professor) {
+    professorRepository.registerProfessor(professor);
+  }
 }

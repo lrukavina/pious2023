@@ -9,4 +9,6 @@ public interface ProfessorRepository {
   Professor fetchById(Long id);
 
   Professor fetchByCourseId(Long id);
+
+  void registerProfessor(Professor professor);
 }
