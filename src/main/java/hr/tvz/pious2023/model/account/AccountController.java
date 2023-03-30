@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/account")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class AccountController {
 
   private final AccountService accountService;
