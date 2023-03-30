@@ -16,4 +16,11 @@ public interface ProfessorService {
    * @return professor Dto object
    */
   ProfessorDto fetchByCourseId(Long id);
+
+  /**
+   * Registers (saves) new professor into database
+   *
+   * @param professor professor to be saved
+   */
+  void registerProfessor(Professor professor);
 }

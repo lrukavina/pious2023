@@ -1,5 +1,6 @@
 package hr.tvz.pious2023;
 
+import hr.tvz.pious2023.model.account.AccountForm;
 import hr.tvz.pious2023.model.student.StudentDto;
 
 import java.time.LocalDateTime;
@@ -38,5 +39,9 @@ public class Utils {
         .append("<br>")
         .append("<b><i>Ovo je automatska poruka, molimo nemojte odgovarati na nju. </b></i>")
         .toString();
+  }
+
+  public static String buildUsername(AccountForm accountForm) {
+    return (accountForm.getFirstName().charAt(0) + accountForm.getLastName()).toLowerCase();
   }
 }

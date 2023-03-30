@@ -11,6 +11,7 @@
         <id property="email" column="email" />
         <id property="phone" column="phone" />
         <id property="image" column="image" />
+        <id property="role" column="role_type" />
     </resultMap>
 
     <sql id="accountSelectColumns">
@@ -19,22 +20,76 @@
         ${alias}.password,
         ${alias}.email,
         ${alias}.phone,
-        ${alias}.image
+        ${alias}.image,
+        role_type
     </sql>
 
     <select id="fetchAll" resultMap="accountResultMap">
-      SELECT <include refid="accountSelectColumns">
-              <property name="alias" value="ACCOUNT"/>
-             </include>
-        FROM ACCOUNT
+          SELECT  <include refid="accountSelectColumns">
+                   <property name="alias" value="ACCOUNT"/>
+                  </include>
+            FROM ACCOUNT
+      INNER JOIN role on account.id = role.account_id
     </select>
 
     <select id="fetchById" parameterType="Long" resultMap="accountResultMap">
-      SELECT <include refid="accountSelectColumns">
-                <property name="alias" value="ACCOUNT"/>
-               </include>
-        FROM ACCOUNT
-       WHERE ID = #{id}
+         SELECT  <include refid="accountSelectColumns">
+                  <property name="alias" value="ACCOUNT"/>
+                 </include>
+            FROM account
+      INNER JOIN role on account.id = role.account_id
+       WHERE account.id = #{id}
     </select>
+
+    <select id="fetchByStudentId" parameterType="Long" resultMap="accountResultMap">
+        SELECT  <include refid="accountSelectColumns">
+        <property name="alias" value="ACCOUNT"/>
+    </include>
+        FROM account
+        INNER JOIN student on account.id = student.account_id
+        INNER JOIN role on account.id = role.account_id
+        WHERE student.id = #{id}
+    </select>
+
+    <select id="fetchByProfessorId" parameterType="Long" resultMap="accountResultMap">
+        SELECT  <include refid="accountSelectColumns">
+        <property name="alias" value="ACCOUNT"/>
+    </include>
+        FROM account
+        INNER JOIN professor on account.id = professor.account_id
+        INNER JOIN role on account.id = role.account_id
+        WHERE professor.id = #{id}
+    </select>
+
+    <select id="fetchLastByUsername" parameterType="String" resultMap="accountResultMap">
+            SELECT    <include refid="accountSelectColumns">
+                       <property name="alias" value="ACCOUNT"/>
+                      </include>
+              FROM account
+        INNER JOIN role on account.id = role.account_id
+             WHERE account.username like #{username}
+          ORDER BY account.id DESC
+          LIMIT 1
+    </select>
+
+    <insert id="registerAccount" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO account (username,
+                             password,
+                             email,
+                             phone,
+                             image)
+             VALUES (#{username, jdbcType=VARCHAR},
+                     #{password, jdbcType=VARCHAR},
+                     #{email, jdbcType=VARCHAR},
+                     #{phone, jdbcType=VARCHAR},
+                     #{image, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertRole" useGeneratedKeys="true">
+        INSERT INTO role (role_type,
+                          account_id)
+        VALUES (#{roleType, jdbcType=VARCHAR},
+                #{accountId, jdbcType=BIGINT})
+    </insert>
 
 </mapper>

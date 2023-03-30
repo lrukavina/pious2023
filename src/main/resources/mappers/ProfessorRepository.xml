@@ -42,4 +42,13 @@
         WHERE course.id = #{id}
     </select>
 
+    <insert id="registerProfessor" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO professor (first_name,
+                               last_name,
+                               account_id)
+        VALUES (#{firstName, jdbcType=VARCHAR},
+                #{lastName, jdbcType=VARCHAR},
+                #{accountId, jdbcType=BIGINT})
+    </insert>
+
 </mapper>

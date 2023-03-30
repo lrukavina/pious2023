@@ -8,11 +8,10 @@ import lombok.Data;
 @Data
 @Builder
 public class ProfessorDto {
-  private AccountDto account;
   private String firstName;
   private String lastName;
   private String title;
   private String location;
   private String consultations;
-  // todo add AccountDto
+  private AccountDto account;
 }

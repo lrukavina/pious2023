@@ -18,7 +18,7 @@ create table if not exists professor(
     id identity,
     first_name varchar (255) not null,
     last_name varchar (255) not null,
-    title varchar (255) not null,
+    title varchar (255),
     location varchar (255),
     consultations varchar (255),
     account_id bigint not null,
@@ -31,7 +31,7 @@ create table if not exists student(
     first_name varchar (255) not null,
     last_name varchar (255) not null,
     occupation varchar (255),
-    address varchar (255) not null,
+    address varchar (255),
     scholarship int,
     account_id bigint not null,
     constraint fk_student_account foreign key (account_id) references account(id)

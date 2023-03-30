@@ -8,4 +8,11 @@ public interface StudentService {
    * @return student Dto object
    */
   StudentDto fetchById(Long id);
+
+  /**
+   * Registers (saves) new student into database
+   *
+   * @param student student to be saved
+   */
+  void registerStudent(Student student);
 }

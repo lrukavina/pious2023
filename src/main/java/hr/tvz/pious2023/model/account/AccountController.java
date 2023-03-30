@@ -1,6 +1,8 @@
 package hr.tvz.pious2023.model.account;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,12 @@ public class AccountController {
     return accountService.fetchByAccountId(Long.valueOf(id));
   }
 
-  @GetMapping("/hello")
-  public String getHello() {
-    return "Hello PIOUS 2023";
+  @PostMapping
+  public ResponseEntity<String> saveAccount(@RequestBody final AccountForm accountForm) {
+    String email = accountService.registerAccount(accountForm);
+    if (email != null) {
+      return ResponseEntity.status(HttpStatus.OK).body(email);
+    }
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
   }
 }
