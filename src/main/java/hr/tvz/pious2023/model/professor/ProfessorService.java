@@ -18,6 +18,14 @@ public interface ProfessorService {
   ProfessorDto fetchByCourseId(Long id);
 
   /**
+   * Fetches Professor by account id.
+   *
+   * @param id account id
+   * @return professor Dto object
+   */
+  ProfessorDto fetchByAccountId(Long id);
+
+  /**
    * Registers (saves) new professor into database
    *
    * @param professor professor to be saved

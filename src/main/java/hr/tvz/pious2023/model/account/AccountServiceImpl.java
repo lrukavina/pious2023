@@ -112,7 +112,8 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.fetchLastByUsername(getUsernameFromEmail(loginForm.getEmail()));
 
     checkPassword(loginForm.getPassword(), account);
-    return Optional.of(AccountMapper.domainToDto(account));
+
+    return Optional.of(buildAccountLogin(account));
   }
 
   private String getUsernameFromEmail(String email) {
@@ -126,5 +127,21 @@ public class AccountServiceImpl implements AccountService {
     if (account == null || !passwordEncoder.matches(raw, account.getPassword())) {
       throw new PiousException("Email ili lozinka su neispravni, molimo pokušajte ponovno.");
     }
+  }
+
+  private AccountLoginDto buildAccountLogin(Account account) {
+    AccountLoginDto loggedAccount = AccountLoginDto.builder().build();
+
+    if (Role.STUDENT.equals(account.getRole())) {
+      Student student = studentRepository.fetchByAccountId(account.getId());
+      loggedAccount.setFirstName(student.getFirstName());
+      loggedAccount.setLastName(student.getLastName());
+    } else {
+      Professor professor = professorRepository.fetchByAccountId(account.getId());
+      loggedAccount.setFirstName(professor.getFirstName());
+      loggedAccount.setLastName(professor.getLastName());
+    }
+
+    return AccountMapper.buildLoggedAccount(loggedAccount, account);
   }
 }

@@ -17,6 +17,17 @@ public class AccountMapper {
         .build();
   }
 
+  public static AccountLoginDto buildLoggedAccount(
+      AccountLoginDto accountLoginDto, Account account) {
+    accountLoginDto.setId(account.getId());
+    accountLoginDto.setEmail(account.getEmail());
+    accountLoginDto.setImage(account.getImage());
+    accountLoginDto.setPhone(account.getPhone());
+    accountLoginDto.setRole(account.getRole());
+    accountLoginDto.setUsername(account.getUsername());
+    return accountLoginDto;
+  }
+
   public static Account buildBaseAccount(AccountForm accountForm) {
     String username = Utils.buildUsername(accountForm);
     return Account.builder().username(username).email(username + Constants.emailExtension).build();
