@@ -3,8 +3,8 @@ insert into account(username, password, email) values
 ('dmilosevic', '123', 'dmilosevic@tvz.hr'),
 ('sglogovic', '123', 'sglogovic@tvz.hr'),
 ('lrukavina', '123', 'lrukavina@tvz.hr'),
-('astojanovic', '123', 'astojanovic@tvz.hr'),
-('omitrovic', '123', 'omitrovic@tvz.hr');
+('omitrovic', '123', 'omitrovic@tvz.hr'),
+('astojanovic', '123', 'astojanovic@tvz.hr');
 
 
 insert into role(role_type, account_id) values
