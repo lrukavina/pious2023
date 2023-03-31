@@ -1,10 +1,10 @@
 insert into account(username, password, email) values
-('tfiolic', '123', 'tfiolic@tvz.hr'),
-('dmilosevic', '123', 'dmilosevic@tvz.hr'),
-('sglogovic', '123', 'sglogovic@tvz.hr'),
-('lrukavina', '123', 'lrukavina@tvz.hr'),
-('omitrovic', '123', 'omitrovic@tvz.hr'),
-('astojanovic', '123', 'astojanovic@tvz.hr');
+('tfiolic', '$2a$10$HzTu0cVlnCPNOV.xkjVmY.BdFmxYTOCusC1R/7iJzCw/kKfnCJ2Si', 'tfiolic@tvz.hr'),
+('dmilosevic', '$2a$10$zp3oex.r.D67VrZWGlZI2e/qERISqCx4RKdQR0YtZc21zhjydYjIu', 'dmilosevic@tvz.hr'),
+('sglogovic', '$2a$10$i2W780u3w6zGgW509OKek.p.rP6OUr5zPkEKDhRW8l9GGkUxPztpC', 'sglogovic@tvz.hr'),
+('lrukavina', '$2a$10$A/3/XlFc5yKgFFl5ZIEzE.ncYo2LMTLj2S5ZYGJD0UJL0rKIDVaCy', 'lrukavina@tvz.hr'),
+('omitrovic', '$2a$10$HOoOJEp6rofZKFg68gncW.CCT4loORPjjia51CfO3wFrky.nN5KMq', 'omitrovic@tvz.hr'),
+('astojanovic', '$2a$10$AlHGfq/y3sgAIChoGZaSr.9Y7cXfuR7NQBSObTEhiawAEbAu0rclG', 'astojanovic@tvz.hr');
 
 
 insert into role(role_type, account_id) values
