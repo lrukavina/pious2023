@@ -42,6 +42,15 @@
         WHERE course.id = #{id}
     </select>
 
+    <select id="fetchByAccountId" parameterType="Long" resultMap="professorResultMap">
+        SELECT <include refid="professorSelectColumns">
+        <property name="alias" value="PROFESSOR"/>
+    </include>
+        FROM professor
+        INNER JOIN account on professor.account_id = account.id
+        WHERE account.id = #{id}
+    </select>
+
     <insert id="registerProfessor" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO professor (first_name,
                                last_name,

@@ -20,6 +20,12 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
+  public StudentDto fetchByAccountId(Long id) {
+    AccountDto account = accountService.fetchByAccountId(id);
+    return StudentMapper.domainToDto(studentRepository.fetchByAccountId(id), account);
+  }
+
+  @Override
   @Transactional
   public void registerStudent(Student student) {
     studentRepository.registerStudent(student);

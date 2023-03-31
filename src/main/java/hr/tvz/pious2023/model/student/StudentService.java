@@ -10,6 +10,14 @@ public interface StudentService {
   StudentDto fetchById(Long id);
 
   /**
+   * Fetches Student by account id
+   *
+   * @param id student id
+   * @return student Dto object
+   */
+  StudentDto fetchByAccountId(Long id);
+
+  /**
    * Registers (saves) new student into database
    *
    * @param student student to be saved

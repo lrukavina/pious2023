@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository {
   Student fetchById(Long id);
 
+  Student fetchByAccountId(Long id);
+
   void registerStudent(Student student);
 }
