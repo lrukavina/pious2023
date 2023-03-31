@@ -24,6 +24,7 @@ public class StudentMapper {
         .firstName(accountForm.getFirstName())
         .lastName(accountForm.getLastName())
         .jmbag(accountForm.getJmbag())
+        .scholarship(false)
         .accountId(accountId)
         .build();
   }

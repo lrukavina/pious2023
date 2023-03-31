@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
   private final AccountRepository accountRepository;
+  private final AccountValidator validator;
   private final PasswordEncoder passwordEncoder;
   private final StudentRepository studentRepository;
   private final ProfessorRepository professorRepository;
@@ -49,6 +50,7 @@ public class AccountServiceImpl implements AccountService {
   @Override
   @Transactional
   public String registerAccount(AccountForm accountForm) {
+    validator.isFormValid(accountForm);
     String formUsername = Utils.buildUsername(accountForm);
     Account latestAccount = accountRepository.fetchLastByUsername(formUsername + "%");
 
