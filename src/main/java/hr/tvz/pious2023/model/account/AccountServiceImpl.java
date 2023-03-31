@@ -1,6 +1,8 @@
 package hr.tvz.pious2023.model.account;
 
 import hr.tvz.pious2023.Utils;
+import hr.tvz.pious2023.exception.PiousException;
+import hr.tvz.pious2023.model.Constants;
 import hr.tvz.pious2023.model.professor.Professor;
 import hr.tvz.pious2023.model.professor.ProfessorMapper;
 import hr.tvz.pious2023.model.professor.ProfessorRepository;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -100,5 +103,28 @@ public class AccountServiceImpl implements AccountService {
     }
     Professor professor = ProfessorMapper.buildProfessorDomain(accountForm, account.getId());
     professorRepository.registerProfessor(professor);
+  }
+
+  @Override
+  @Transactional
+  public Optional<AccountDto> loginAccount(LoginForm loginForm) {
+    Account account =
+        accountRepository.fetchLastByUsername(getUsernameFromEmail(loginForm.getEmail()));
+
+    checkPassword(loginForm.getPassword(), account);
+    return Optional.of(AccountMapper.domainToDto(account));
+  }
+
+  private String getUsernameFromEmail(String email) {
+    if (email.contains(Constants.emailExtension)) {
+      return email.replace(Constants.emailExtension, "");
+    }
+    return email;
+  }
+
+  private void checkPassword(String raw, Account account) {
+    if (account == null || !passwordEncoder.matches(raw, account.getPassword())) {
+      throw new PiousException("Email ili lozinka su neispravni, molimo pokušajte ponovno.");
+    }
   }
 }

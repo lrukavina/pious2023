@@ -1,12 +1,11 @@
 package hr.tvz.pious2023.model.account;
 
 import hr.tvz.pious2023.Utils;
+import hr.tvz.pious2023.model.Constants;
 
 /** Mapper class for {@link Account} */
 public class AccountMapper {
   private AccountMapper() {}
-
-  private static final String emailExtension = "@tvz.hr";
 
   public static AccountDto domainToDto(Account account) {
     return AccountDto.builder()
@@ -20,7 +19,7 @@ public class AccountMapper {
 
   public static Account buildBaseAccount(AccountForm accountForm) {
     String username = Utils.buildUsername(accountForm);
-    return Account.builder().username(username).email(username + emailExtension).build();
+    return Account.builder().username(username).email(username + Constants.emailExtension).build();
   }
 
   public static Account buildBaseAccountFromExisting(Account account) {
@@ -30,7 +29,7 @@ public class AccountMapper {
     if (!Character.isDigit(lastChar)) {
       return Account.builder()
           .username(account.getUsername() + "1")
-          .email(account.getUsername() + "1" + emailExtension)
+          .email(account.getUsername() + "1" + Constants.emailExtension)
           .build();
     }
 
@@ -38,6 +37,9 @@ public class AccountMapper {
     int lastNumber = Integer.parseInt(String.valueOf(lastChar));
     lastNumber++;
     newUsername = newUsername + lastNumber;
-    return Account.builder().username(newUsername).email(newUsername + emailExtension).build();
+    return Account.builder()
+        .username(newUsername)
+        .email(newUsername + Constants.emailExtension)
+        .build();
   }
 }

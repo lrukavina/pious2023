@@ -34,4 +34,12 @@ public class AccountController {
     }
     return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
   }
+
+  @PostMapping("/login")
+  public ResponseEntity<AccountDto> loginAccount(@RequestBody final LoginForm loginForm) {
+    return accountService
+        .loginAccount(loginForm)
+        .map(account -> ResponseEntity.status(HttpStatus.CREATED).body(account))
+        .orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).build());
+  }
 }
