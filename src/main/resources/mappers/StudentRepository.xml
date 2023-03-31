@@ -38,10 +38,12 @@
         INSERT INTO student (jmbag,
                              first_name,
                              last_name,
+                             scholarship,
                              account_id)
         VALUES (#{jmbag, jdbcType=VARCHAR},
                 #{firstName, jdbcType=VARCHAR},
                 #{lastName, jdbcType=VARCHAR},
+                #{scholarship, jdbcType=BIGINT},
                 #{accountId, jdbcType=BIGINT})
     </insert>
 </mapper>
