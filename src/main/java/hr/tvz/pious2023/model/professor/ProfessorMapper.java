@@ -25,4 +25,10 @@ public class ProfessorMapper {
         .accountId(accountId)
         .build();
   }
+
+  public static void updateProfessor(EditProfessorForm form, Professor professor) {
+    professor.setTitle(form.getTitle());
+    professor.setLocation(form.getLocation());
+    professor.setConsultations(form.getConsultations());
+  }
 }

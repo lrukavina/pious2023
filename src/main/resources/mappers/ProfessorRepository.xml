@@ -60,4 +60,12 @@
                 #{accountId, jdbcType=BIGINT})
     </insert>
 
+    <update id="updateProfessor">
+        UPDATE professor
+           SET title         = #{title, jdbcType=VARCHAR},
+               location      = #{location, jdbcType=VARCHAR},
+               consultations = #{consultations, jdbcType=VARCHAR}
+        WHERE  id            = #{id, jdbcType=BIGINT}
+    </update>
+
 </mapper>

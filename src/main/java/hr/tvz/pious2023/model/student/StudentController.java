@@ -24,7 +24,7 @@ public class StudentController {
       @RequestBody final EditStudentForm editStudentForm) {
     return studentService
         .editStudentProfile(editStudentForm)
-        .map(account -> ResponseEntity.status(HttpStatus.CREATED).body(account))
+        .map(student -> ResponseEntity.status(HttpStatus.CREATED).body(student))
         .orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).build());
   }
 }
