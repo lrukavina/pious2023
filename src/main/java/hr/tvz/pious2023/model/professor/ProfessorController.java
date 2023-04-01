@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /** Controller class for {@link Professor}. */
 @RestController
 @AllArgsConstructor
@@ -17,6 +19,11 @@ public class ProfessorController {
   @GetMapping("/{id}")
   public ProfessorDto getById(@PathVariable final String id) {
     return professorService.fetchById(Long.valueOf(id));
+  }
+
+  @GetMapping("/dropdown")
+  public List<ProfessorDropdownDto> getAllForDropdown() {
+    return professorService.fetchAllForDropdown();
   }
 
   @PostMapping("/update")

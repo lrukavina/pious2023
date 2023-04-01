@@ -18,6 +18,14 @@ public class ProfessorMapper {
         .build();
   }
 
+  public static ProfessorDropdownDto domainToDropdownDto(Professor professor) {
+    return ProfessorDropdownDto.builder()
+        .id(professor.getId())
+        .firstName(professor.getFirstName())
+        .lastName(professor.getLastName())
+        .build();
+  }
+
   public static Professor buildProfessorDomain(AccountForm accountForm, Long accountId) {
     return Professor.builder()
         .firstName(accountForm.getFirstName())

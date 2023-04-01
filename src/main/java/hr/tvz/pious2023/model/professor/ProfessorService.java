@@ -1,8 +1,16 @@
 package hr.tvz.pious2023.model.professor;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProfessorService {
+
+  /**
+   * Fetches all professors from database
+   *
+   * @return professors
+   */
+  List<ProfessorDropdownDto> fetchAllForDropdown();
   /**
    * Fetches Professor by id
    *
