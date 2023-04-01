@@ -40,4 +40,24 @@
         WHERE student.id = #{id}
     </select>
 
+    <insert id="saveCourse" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO course (name,
+                             ects_number,
+                             description,
+                             semester,
+                             literature)
+        VALUES (#{name, jdbcType=VARCHAR},
+                #{ects, jdbcType=BIGINT},
+                #{description, jdbcType=VARCHAR},
+                #{semester, jdbcType=BIGINT},
+                #{literature, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="saveCourseProfessors">
+        INSERT INTO professor_course (professor_id,
+                                     course_id)
+        VALUES (#{professorId, jdbcType=BIGINT},
+                #{courseId, jdbcType=BIGINT})
+    </insert>
+
 </mapper>

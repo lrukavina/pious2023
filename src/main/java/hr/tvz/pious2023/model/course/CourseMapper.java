@@ -14,4 +14,14 @@ public class CourseMapper {
         .literature(course.getLiterature())
         .build();
   }
+
+  public static Course formToDomain(CourseForm form) {
+    return Course.builder()
+        .name(form.getName())
+        .ects(form.getEcts())
+        .description(form.getDescription())
+        .semester(form.getSemester())
+        .literature(form.getLiterature())
+        .build();
+  }
 }
