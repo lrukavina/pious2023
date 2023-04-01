@@ -1,6 +1,8 @@
 package hr.tvz.pious2023.model.student;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /** Controller class for {@link Student}. */
@@ -15,5 +17,14 @@ public class StudentController {
   @GetMapping("/{id}")
   public StudentDto getById(@PathVariable final String id) {
     return studentService.fetchById(Long.valueOf(id));
+  }
+
+  @PostMapping("/update")
+  public ResponseEntity<StudentDto> updateStudent(
+      @RequestBody final EditStudentForm editStudentForm) {
+    return studentService
+        .editStudentProfile(editStudentForm)
+        .map(student -> ResponseEntity.status(HttpStatus.CREATED).body(student))
+        .orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).build());
   }
 }

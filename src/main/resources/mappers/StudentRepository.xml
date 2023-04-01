@@ -55,4 +55,12 @@
                 #{scholarship, jdbcType=BIGINT},
                 #{accountId, jdbcType=BIGINT})
     </insert>
+
+    <update id="updateStudent">
+        UPDATE student
+           SET occupation  = #{occupation, jdbcType=VARCHAR},
+               address     = #{address, jdbcType=VARCHAR},
+               scholarship = #{scholarship, jdbcType=BIGINT}
+         WHERE id = #{id, jdbcType=BIGINT}
+    </update>
 </mapper>

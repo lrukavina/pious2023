@@ -1,5 +1,7 @@
 package hr.tvz.pious2023.model.professor;
 
+import java.util.Optional;
+
 public interface ProfessorService {
   /**
    * Fetches Professor by id
@@ -31,4 +33,12 @@ public interface ProfessorService {
    * @param professor professor to be saved
    */
   void registerProfessor(Professor professor);
+
+  /**
+   * Updates information about professor
+   *
+   * @param editProfessorForm Form with updated professor's data
+   * @return updated professor
+   */
+  Optional<ProfessorDto> editProfessor(EditProfessorForm editProfessorForm);
 }

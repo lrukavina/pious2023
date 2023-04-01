@@ -13,4 +13,6 @@ public interface ProfessorRepository {
   Professor fetchByAccountId(Long id);
 
   void registerProfessor(Professor professor);
+
+  void updateProfessor(Professor professor);
 }
