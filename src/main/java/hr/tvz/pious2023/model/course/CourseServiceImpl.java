@@ -1,5 +1,8 @@
 package hr.tvz.pious2023.model.course;
 
+import hr.tvz.pious2023.model.schedule.ScheduleForm;
+import hr.tvz.pious2023.model.schedule.ScheduleMapper;
+import hr.tvz.pious2023.model.schedule.ScheduleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,7 @@ public class CourseServiceImpl implements CourseService {
 
   private final CourseRepository courseRepository;
   private final CourseValidator courseValidator;
+  private final ScheduleRepository scheduleRepository;
 
   @Override
   public CourseDto fetchById(Long id) {
@@ -32,6 +36,7 @@ public class CourseServiceImpl implements CourseService {
     Course course = CourseMapper.formToDomain(courseForm);
     courseRepository.saveCourse(course);
     saveCourseProfessors(courseForm.getProfessors(), course.getId());
+    saveCourseSchedule(courseForm, course.getId());
     return Optional.of(CourseMapper.domainToDto(course));
   }
 
@@ -39,5 +44,10 @@ public class CourseServiceImpl implements CourseService {
     for (Integer professorId : professors) {
       courseRepository.saveCourseProfessors(professorId, courseId);
     }
+  }
+
+  private void saveCourseSchedule(CourseForm courseForm, Long courseId) {
+    ScheduleForm scheduleForm = CourseMapper.formToScheduleForm(courseForm, courseId);
+    scheduleRepository.saveSchedule(ScheduleMapper.formToDomain(scheduleForm));
   }
 }

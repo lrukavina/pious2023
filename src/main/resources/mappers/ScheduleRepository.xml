@@ -27,4 +27,13 @@
           FROM SCHEDULE
          WHERE COURSE_ID = #{id}
     </select>
+
+    <insert id="saveSchedule" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO schedule (tstamp_from,
+                              tstamp_to,
+                              course_id)
+        VALUES (#{fromDateTime, jdbcType=TIMESTAMP},
+                #{toDateTime, jdbcType=TIMESTAMP},
+                #{courseId, jdbcType=BIGINT})
+    </insert>
 </mapper>

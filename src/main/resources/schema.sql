@@ -64,7 +64,7 @@ create table if not exists schedule(
     id identity,
     tstamp_from timestamp not null,
     tstamp_to timestamp not null,
-    day_of_the_week int not null,
+    day_of_the_week int,
     course_id bigint not null,
     constraint fk_schedule_course foreign key (course_id) references course(id)
 );

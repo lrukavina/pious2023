@@ -45,4 +45,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
     return scheduleDtos;
   }
+
+  @Override
+  public void saveSchedule(ScheduleForm scheduleForm) {
+    scheduleRepository.saveSchedule(ScheduleMapper.formToDomain(scheduleForm));
+  }
 }

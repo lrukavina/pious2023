@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Data
 @Slf4j
 @Component
@@ -20,6 +22,21 @@ public class CourseValidator {
 
     if (courseForm.getProfessors().isEmpty()) {
       throw new PiousException("Molimo odaberite barem jednog profesora na kolegiju.");
+    }
+
+    LocalDateTime dateTimeFrom = courseForm.getFromDateTime();
+    LocalDateTime dateTimeTo = courseForm.getToDateTime();
+
+    if (dateTimeFrom == null || dateTimeTo == null) {
+      throw new PiousException("Molimo popunite podatke o trajanju kolegija.");
+    }
+
+    if (dateTimeFrom.isEqual(dateTimeTo)) {
+      throw new PiousException("Datum i vrijeme od i datum i vrijeme do ne smiju biti jednaki.");
+    }
+
+    if (!dateTimeFrom.isBefore(dateTimeTo)) {
+      throw new PiousException("Datum i vrijeme od mora biti nakon datuma i vremena do.");
     }
   }
 }

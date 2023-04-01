@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface ScheduleRepository {
   List<Schedule> fetchByCourseId(Long id);
+
+  void saveSchedule(Schedule schedule);
 }

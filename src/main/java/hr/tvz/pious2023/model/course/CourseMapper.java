@@ -1,5 +1,7 @@
 package hr.tvz.pious2023.model.course;
 
+import hr.tvz.pious2023.model.schedule.ScheduleForm;
+
 /** Mapper class for {@link Course} */
 public class CourseMapper {
   private CourseMapper() {}
@@ -22,6 +24,14 @@ public class CourseMapper {
         .description(form.getDescription())
         .semester(form.getSemester())
         .literature(form.getLiterature())
+        .build();
+  }
+
+  public static ScheduleForm formToScheduleForm(CourseForm form, Long courseId) {
+    return ScheduleForm.builder()
+        .fromDateTime(form.getFromDateTime())
+        .toDateTime(form.getToDateTime())
+        .courseId(courseId)
         .build();
   }
 }
