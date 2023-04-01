@@ -1,6 +1,7 @@
 package hr.tvz.pious2023.model.course;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CourseService {
   /**
@@ -18,4 +19,12 @@ public interface CourseService {
    * @return course dto objects
    */
   List<CourseDto> fetchAllByStudentId(Long id);
+
+  /**
+   * Saves new course
+   *
+   * @param courseForm Course form
+   * @return saved Course dto
+   */
+  Optional<CourseDto> saveCourse(CourseForm courseForm);
 }

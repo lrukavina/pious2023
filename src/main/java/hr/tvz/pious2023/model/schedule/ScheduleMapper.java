@@ -51,4 +51,12 @@ public class ScheduleMapper {
     scheduleDto.setProfessor(professorDto.getFirstName() + " " + professorDto.getLastName());
     return scheduleDto;
   }
+
+  public static Schedule formToDomain(ScheduleForm form) {
+    return Schedule.builder()
+        .fromDateTime(form.getFromDateTime())
+        .toDateTime(form.getToDateTime())
+        .courseId(form.getCourseId())
+        .build();
+  }
 }

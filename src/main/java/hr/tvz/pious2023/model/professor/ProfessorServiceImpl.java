@@ -6,7 +6,9 @@ import hr.tvz.pious2023.model.account.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -14,6 +16,13 @@ public class ProfessorServiceImpl implements ProfessorService {
 
   private final ProfessorRepository professorRepository;
   private final AccountService accountService;
+
+  @Override
+  public List<ProfessorDropdownDto> fetchAllForDropdown() {
+    return professorRepository.fetchAll().stream()
+        .map(ProfessorMapper::domainToDropdownDto)
+        .collect(Collectors.toList());
+  }
 
   @Override
   public ProfessorDto fetchById(Long id) {
