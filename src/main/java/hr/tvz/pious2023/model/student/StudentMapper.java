@@ -28,4 +28,10 @@ public class StudentMapper {
         .accountId(accountId)
         .build();
   }
+
+  public static void updateStudent(EditStudentForm form, Student student) {
+    student.setOccupation(form.getOccupation());
+    student.setAddress(form.getAddress());
+    student.setScholarship(form.isScholarship());
+  }
 }

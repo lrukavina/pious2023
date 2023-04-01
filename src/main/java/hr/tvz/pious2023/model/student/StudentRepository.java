@@ -11,4 +11,6 @@ public interface StudentRepository {
   Student fetchByAccountId(Long id);
 
   void registerStudent(Student student);
+
+  void updateStudent(Student student);
 }
