@@ -1,5 +1,6 @@
 package hr.tvz.pious2023.model.grade;
 
+import hr.tvz.pious2023.exception.PiousException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,11 @@ public class GradeServiceImpl implements GradeService {
   public Optional<Grade> saveGrade(GradeForm gradeForm) {
     gradeValidator.isFormValid(gradeForm);
     Grade grade = GradeMapper.formToDomain(gradeForm);
-    gradeRepository.saveGrade(grade);
+    try {
+      gradeRepository.saveGrade(grade);
+    } catch (Exception e) {
+      throw new PiousException("Navedeni student ili kolegij ne postoji u bazi podataka.");
+    }
     return Optional.of(grade);
   }
 }
