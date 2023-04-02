@@ -46,8 +46,8 @@ public class ProfessorMapper {
   public static List<String> buildProfessorBasicInfoList(List<ProfessorDto> professors) {
     List<String> professorInfos = new ArrayList<>();
     for (ProfessorDto professor : professors) {
-      professorInfos.add(
-          professor.getTitle() + " " + professor.getFirstName() + " " + professor.getLastName());
+      String title = professor.getTitle() != null ? professor.getTitle() + " " : "";
+      professorInfos.add(title + professor.getFirstName() + " " + professor.getLastName());
     }
     return professorInfos;
   }
