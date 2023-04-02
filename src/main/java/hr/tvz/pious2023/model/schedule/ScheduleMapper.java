@@ -3,6 +3,7 @@ package hr.tvz.pious2023.model.schedule;
 import hr.tvz.pious2023.model.Constants;
 import hr.tvz.pious2023.model.course.CourseDto;
 import hr.tvz.pious2023.model.professor.ProfessorDto;
+import hr.tvz.pious2023.model.professor.ProfessorMapper;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +16,7 @@ public class ScheduleMapper {
   private ScheduleMapper() {}
 
   public static List<ScheduleDto> getAllScheduleEntries(
-      Schedule schedule, CourseDto courseDto, ProfessorDto professorDto) {
+      Schedule schedule, CourseDto courseDto, List<ProfessorDto> professorDtos) {
     String timeFrom =
         schedule.getFromDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
     String timeTo =
@@ -40,15 +41,15 @@ public class ScheduleMapper {
     }
 
     return scheduleEntries.stream()
-        .map(scheduleDto -> domainToDto(scheduleDto, courseDto, professorDto))
+        .map(scheduleDto -> domainToDto(scheduleDto, courseDto, professorDtos))
         .collect(Collectors.toList());
   }
 
   public static ScheduleDto domainToDto(
-      ScheduleDto scheduleDto, CourseDto courseDto, ProfessorDto professorDto) {
+      ScheduleDto scheduleDto, CourseDto courseDto, List<ProfessorDto> professorDtos) {
     scheduleDto.setTitle(courseDto.getName());
     scheduleDto.setLocation(Constants.universityName);
-    scheduleDto.setProfessor(professorDto.getFirstName() + " " + professorDto.getLastName());
+    scheduleDto.setProfessors(ProfessorMapper.buildProfessorBasicInfoList(professorDtos));
     return scheduleDto;
   }
 

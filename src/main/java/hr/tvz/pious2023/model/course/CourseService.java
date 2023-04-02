@@ -21,6 +21,14 @@ public interface CourseService {
   List<CourseDto> fetchAllByStudentId(Long id);
 
   /**
+   * Fetches all courses for account by account id
+   *
+   * @param id account id
+   * @return course dto objects
+   */
+  List<CourseDto> fetchAllByAccountId(Long id);
+
+  /**
    * Saves new course
    *
    * @param courseForm Course form

@@ -6,6 +6,7 @@ import hr.tvz.pious2023.model.account.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,9 +32,16 @@ public class ProfessorServiceImpl implements ProfessorService {
   }
 
   @Override
-  public ProfessorDto fetchByCourseId(Long id) {
-    AccountDto account = accountService.fetchByProfessorId(id);
-    return ProfessorMapper.domainToDto(professorRepository.fetchByCourseId(id), account);
+  public List<ProfessorDto> fetchByCourseId(Long id) {
+    List<Professor> professors = professorRepository.fetchByCourseId(id);
+
+    List<ProfessorDto> professorDtos = new ArrayList<>();
+    for (Professor professor : professors) {
+      AccountDto account = accountService.fetchByProfessorId(professor.getId());
+      professorDtos.add(ProfessorMapper.domainToDto(professor, account));
+    }
+
+    return professorDtos;
   }
 
   @Override

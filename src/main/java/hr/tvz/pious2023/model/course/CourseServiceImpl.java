@@ -1,11 +1,14 @@
 package hr.tvz.pious2023.model.course;
 
+import hr.tvz.pious2023.model.professor.ProfessorDto;
+import hr.tvz.pious2023.model.professor.ProfessorService;
 import hr.tvz.pious2023.model.schedule.ScheduleForm;
 import hr.tvz.pious2023.model.schedule.ScheduleMapper;
 import hr.tvz.pious2023.model.schedule.ScheduleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,6 +20,7 @@ public class CourseServiceImpl implements CourseService {
   private final CourseRepository courseRepository;
   private final CourseValidator courseValidator;
   private final ScheduleRepository scheduleRepository;
+  private final ProfessorService professorService;
 
   @Override
   public CourseDto fetchById(Long id) {
@@ -28,6 +32,19 @@ public class CourseServiceImpl implements CourseService {
     return courseRepository.fetchAllByStudentId(id).stream()
         .map(CourseMapper::domainToDto)
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<CourseDto> fetchAllByAccountId(Long id) {
+
+    List<Course> courses = courseRepository.fetchAllByAccountId(id);
+
+    List<CourseDto> courseDtos = new ArrayList<>();
+    for (Course course : courses) {
+      List<ProfessorDto> professors = professorService.fetchByCourseId(course.getId());
+      courseDtos.add(CourseMapper.domainToViewDto(course, professors));
+    }
+    return courseDtos;
   }
 
   @Override

@@ -3,6 +3,9 @@ package hr.tvz.pious2023.model.professor;
 import hr.tvz.pious2023.model.account.AccountDto;
 import hr.tvz.pious2023.model.account.AccountForm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Mapper class for {@link Professor} */
 public class ProfessorMapper {
   private ProfessorMapper() {}
@@ -38,5 +41,14 @@ public class ProfessorMapper {
     professor.setTitle(form.getTitle());
     professor.setLocation(form.getLocation());
     professor.setConsultations(form.getConsultations());
+  }
+
+  public static List<String> buildProfessorBasicInfoList(List<ProfessorDto> professors) {
+    List<String> professorInfos = new ArrayList<>();
+    for (ProfessorDto professor : professors) {
+      professorInfos.add(
+          professor.getTitle() + " " + professor.getFirstName() + " " + professor.getLastName());
+    }
+    return professorInfos;
   }
 }

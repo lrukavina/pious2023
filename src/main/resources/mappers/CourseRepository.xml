@@ -40,6 +40,16 @@
         WHERE student.id = #{id}
     </select>
 
+    <select id="fetchAllByAccountId" parameterType="Long" resultMap="courseResultMap">
+        SELECT <include refid="courseSelectColumns">
+        <property name="alias" value="COURSE"/>
+    </include>
+        FROM course
+        INNER JOIN student_course on course.id = course_id
+        INNER JOIN student on student_id = student.id
+        WHERE student.account_id = #{id}
+    </select>
+
     <insert id="saveCourse" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
         INSERT INTO course (name,
                              ects_number,

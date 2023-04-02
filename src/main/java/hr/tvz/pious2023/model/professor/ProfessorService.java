@@ -25,7 +25,7 @@ public interface ProfessorService {
    * @param id course id
    * @return professor Dto object
    */
-  ProfessorDto fetchByCourseId(Long id);
+  List<ProfessorDto> fetchByCourseId(Long id);
 
   /**
    * Fetches Professor by account id.
