@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +17,18 @@ public class StudentServiceImpl implements StudentService {
 
   private final StudentRepository studentRepository;
   private final AccountService accountService;
+
+  @Override
+  public List<StudentDto> fetchAll() {
+    List<AccountDto> accounts = accountService.fetchAll();
+    List<Student> students = studentRepository.fetchAll();
+
+    List<StudentDto> studentDtos = new ArrayList<>();
+    for (int i = 0; i < students.size(); i++) {
+      studentDtos.add(StudentMapper.domainToDto(students.get(i), accounts.get(i)));
+    }
+    return studentDtos;
+  }
 
   @Override
   public StudentDto fetchById(Long id) {

@@ -1,8 +1,17 @@
 package hr.tvz.pious2023.model.student;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentService {
+
+  /**
+   * Fetches all Students from database
+   *
+   * @return all students
+   */
+  List<StudentDto> fetchAll();
+
   /**
    * Fetches Student by id
    *

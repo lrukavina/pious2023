@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /** Controller class for {@link Student}. */
 @RestController
 @AllArgsConstructor
@@ -13,6 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
 
   private final StudentService studentService;
+
+  @GetMapping("/all")
+  public List<StudentDto> getAll() {
+    return studentService.fetchAll();
+  }
 
   @GetMapping("/{id}")
   public StudentDto getById(@PathVariable final String id) {
