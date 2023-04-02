@@ -8,7 +8,6 @@
         <id property="studentId" column="student_id" />
         <id property="courseId" column="course_id" />
         <id property="grade" column="grade" />
-
     </resultMap>
 
     <sql id="accountSelectColumns">
@@ -16,6 +15,15 @@
         ${alias}.course_id,
         ${alias}.grade
     </sql>
+
+    <select id="fetchByStudentsCourse" resultMap="gradeResultMap">
+        SELECT <include refid="accountSelectColumns">
+                <property name="alias" value="STUDENT_GRADE"/>
+               </include>
+          FROM STUDENT_GRADE
+         WHERE STUDENT_ID = #{studentId}
+           AND COURSE_ID = #{courseId}
+    </select>
 
     <insert id="saveGrade" useGeneratedKeys="true">
         INSERT INTO student_grade (student_id,
