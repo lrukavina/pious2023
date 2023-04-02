@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hr.tvz.pious2023.model.grade.GradeRepository">
+    <resultMap id="gradeResultMap" type="Grade">
+        <id property="studentId" column="student_id" />
+        <id property="courseId" column="course_id" />
+        <id property="grade" column="grade" />
+
+    </resultMap>
+
+    <sql id="accountSelectColumns">
+        ${alias}.student_id,
+        ${alias}.course_id,
+        ${alias}.grade
+    </sql>
+
+    <insert id="saveGrade" useGeneratedKeys="true">
+        INSERT INTO student_grade (student_id,
+                                   course_id,
+                                   grade)
+        VALUES (#{studentId, jdbcType=BIGINT},
+                #{courseId, jdbcType=BIGINT},
+                #{grade, jdbcType=BIGINT})
+    </insert>
+
+
+</mapper>
