@@ -13,6 +13,8 @@ public interface CourseRepository {
 
   List<Course> fetchAllByStudentId(Long id);
 
+  List<Course> fetchAllByAccountId(Long id);
+
   Integer saveCourse(Course course);
 
   void saveCourseProfessors(

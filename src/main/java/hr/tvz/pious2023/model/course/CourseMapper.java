@@ -1,6 +1,10 @@
 package hr.tvz.pious2023.model.course;
 
+import hr.tvz.pious2023.model.professor.ProfessorDto;
+import hr.tvz.pious2023.model.professor.ProfessorMapper;
 import hr.tvz.pious2023.model.schedule.ScheduleForm;
+
+import java.util.List;
 
 /** Mapper class for {@link Course} */
 public class CourseMapper {
@@ -15,6 +19,12 @@ public class CourseMapper {
         .semester(course.getSemester())
         .literature(course.getLiterature())
         .build();
+  }
+
+  public static CourseDto domainToViewDto(Course course, List<ProfessorDto> professors) {
+    CourseDto courseDto = domainToDto(course);
+    courseDto.setProfessors(ProfessorMapper.buildProfessorBasicInfoList(professors));
+    return courseDto;
   }
 
   public static Course formToDomain(CourseForm form) {

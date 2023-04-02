@@ -22,13 +22,13 @@ public class ScheduleServiceImpl implements ScheduleService {
   public List<ScheduleDto> fetchByCourseId(Long id) {
     CourseDto courseDto = courseService.fetchById(id);
 
-    ProfessorDto professorDto = professorService.fetchByCourseId(id);
+    List<ProfessorDto> professorDtos = professorService.fetchByCourseId(id);
     List<Schedule> schedules = scheduleRepository.fetchByCourseId(id);
 
     List<ScheduleDto> scheduleDtos = new ArrayList<>();
     for (Schedule schedule : schedules) {
       List<ScheduleDto> entries;
-      entries = ScheduleMapper.getAllScheduleEntries(schedule, courseDto, professorDto);
+      entries = ScheduleMapper.getAllScheduleEntries(schedule, courseDto, professorDtos);
       scheduleDtos.addAll(entries);
     }
 

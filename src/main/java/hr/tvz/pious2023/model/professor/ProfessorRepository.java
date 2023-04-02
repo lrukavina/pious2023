@@ -12,7 +12,7 @@ public interface ProfessorRepository {
 
   Professor fetchById(Long id);
 
-  Professor fetchByCourseId(Long id);
+  List<Professor> fetchByCourseId(Long id);
 
   Professor fetchByAccountId(Long id);
 
