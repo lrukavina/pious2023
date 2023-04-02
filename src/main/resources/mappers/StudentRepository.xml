@@ -26,6 +26,14 @@
         ${alias}.account_id
     </sql>
 
+
+    <select id="fetchAll" resultMap="studentResultMap">
+        SELECT <include refid="studentSelectColumns">
+                <property name="alias" value="STUDENT"/>
+               </include>
+          FROM STUDENT
+    </select>
+
     <select id="fetchById" parameterType="Long" resultMap="studentResultMap">
         SELECT <include refid="studentSelectColumns">
         <property name="alias" value="STUDENT"/>
