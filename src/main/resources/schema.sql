@@ -90,3 +90,11 @@ create table if not exists notification(
     constraint fk_professor_notification foreign key (professor_id) references professor(id),
     constraint fk_course_notification foreign key (course_id) references course(id)
 );
+
+create table if not exists student_grade(
+    student_id bigint not null,
+    course_id bigint not null,
+    grade bigint not null,
+    constraint fk_student_grade foreign key (student_id) references student(id),
+    constraint fk_student_course_grade foreign key (course_id) references course(id)
+)

@@ -14,5 +14,6 @@
         <mapper resource="mappers/StudentRepository.xml"/>
         <mapper resource="mappers/TodoRepository.xml"/>
         <mapper resource="mappers/ScheduleRepository.xml"/>
+        <mapper resource="mappers/GradeRepository.xml"/>
     </mappers>
 </configuration>
