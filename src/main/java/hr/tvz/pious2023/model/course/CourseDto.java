@@ -2,12 +2,13 @@ package hr.tvz.pious2023.model.course;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 /** DTO class for {@link Course} */
 @Data
-@Builder
+@SuperBuilder
 public class CourseDto {
   private Long id;
   private String name;

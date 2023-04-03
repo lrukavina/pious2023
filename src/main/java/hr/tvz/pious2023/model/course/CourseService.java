@@ -21,6 +21,14 @@ public interface CourseService {
   List<CourseDto> fetchAllByStudentId(Long id);
 
   /**
+   * Fetches all courses with grades and student GPA and ect points for student by student id
+   *
+   * @param id student id
+   * @return course dto objects
+   */
+  CourseGradeWrapperDto fetchAllWithGradeByAccountId(Long id);
+
+  /**
    * Fetches all courses for account by account id
    *
    * @param id account id

@@ -17,6 +17,11 @@ public class GradeServiceImpl implements GradeService {
   private final StudentRepository studentRepository;
 
   @Override
+  public Grade fetchByStudentsCourse(Long studentId, Long courseId) {
+    return gradeRepository.fetchByStudentsCourse(studentId, courseId);
+  }
+
+  @Override
   @Transactional
   public Optional<Grade> saveGrade(GradeForm gradeForm) {
     Student student = studentRepository.fetchByAccountId(gradeForm.getAccountId());
