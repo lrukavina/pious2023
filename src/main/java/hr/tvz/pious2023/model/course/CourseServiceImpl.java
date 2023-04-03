@@ -106,4 +106,19 @@ public class CourseServiceImpl implements CourseService {
     ScheduleForm scheduleForm = CourseMapper.formToScheduleForm(courseForm, courseId);
     scheduleRepository.saveSchedule(ScheduleMapper.formToDomain(scheduleForm));
   }
+
+  @Override
+  public void enrollCourse(CourseEnrollmentForm courseEnrollmentForm) {
+    Student student = studentRepository.fetchByAccountId(courseEnrollmentForm.getAccountId());
+    if (student == null) {
+      throw new PiousException("Student ne postoji u bazi podataka.");
+    }
+
+    try {
+      courseRepository.enrollCourse(student.getId(), courseEnrollmentForm.getCourseId());
+    } catch (Exception e) {
+      throw new PiousException(
+          "Kolegij nije moguće upisati. Molimo osvježite stranicu i pokušajte ponovno.");
+    }
+  }
 }

@@ -70,4 +70,11 @@
                 #{courseId, jdbcType=BIGINT})
     </insert>
 
+    <insert id="enrollCourse">
+        INSERT INTO student_course (student_id,
+                                      course_id)
+        VALUES (#{studentId, jdbcType=BIGINT},
+                #{courseId, jdbcType=BIGINT})
+    </insert>
+
 </mapper>

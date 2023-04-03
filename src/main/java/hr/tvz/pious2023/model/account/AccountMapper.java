@@ -9,6 +9,7 @@ public class AccountMapper {
 
   public static AccountDto domainToDto(Account account) {
     return AccountDto.builder()
+        .id(account.getId())
         .username(account.getUsername())
         .email(account.getEmail())
         .phone(account.getPhone())

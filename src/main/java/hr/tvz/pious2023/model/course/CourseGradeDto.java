@@ -9,5 +9,5 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class CourseGradeDto extends CourseDto {
-  Integer grade;
+  private Integer grade;
 }

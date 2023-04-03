@@ -38,4 +38,9 @@ public class CourseController {
   public CourseGradeWrapperDto getGradesByAccountId(@PathVariable final String id) {
     return courseService.fetchAllWithGradeByAccountId(Long.valueOf(id));
   }
+
+  @PostMapping("/enroll")
+  public void enrollCourse(@RequestBody final CourseEnrollmentForm courseEnrollmentForm) {
+    courseService.enrollCourse(courseEnrollmentForm);
+  }
 }
