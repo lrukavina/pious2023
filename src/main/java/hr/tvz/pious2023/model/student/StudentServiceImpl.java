@@ -25,7 +25,17 @@ public class StudentServiceImpl implements StudentService {
 
     List<StudentDto> studentDtos = new ArrayList<>();
     for (int i = 0; i < students.size(); i++) {
-      studentDtos.add(StudentMapper.domainToDto(students.get(i), accounts.get(i)));
+      int index = i;
+      Optional<AccountDto> account =
+          accounts.stream()
+              .filter(accountDto -> accountDto.getId().equals(students.get(index).getAccountId()))
+              .findFirst();
+
+      if (account.isEmpty()) {
+        throw new PiousException("Greška u bazi podataka. Molimo pokušajte ponovno.");
+      }
+
+      studentDtos.add(StudentMapper.domainToDto(students.get(i), account.get()));
     }
     return studentDtos;
   }

@@ -43,4 +43,11 @@ public interface CourseService {
    * @return saved Course dto
    */
   Optional<CourseDto> saveCourse(CourseForm courseForm);
+
+  /**
+   * Enrolls course for Student
+   *
+   * @param courseEnrollmentForm Course enrollment form
+   */
+  void enrollCourse(CourseEnrollmentForm courseEnrollmentForm);
 }

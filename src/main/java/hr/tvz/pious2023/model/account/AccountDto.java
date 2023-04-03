@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class AccountDto {
+  private Long id;
   private String username;
   private String email;
   private String phone;

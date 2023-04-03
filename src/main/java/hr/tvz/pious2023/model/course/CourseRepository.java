@@ -19,4 +19,6 @@ public interface CourseRepository {
 
   void saveCourseProfessors(
       @Param("professorId") Integer professorId, @Param("courseId") Long courseId);
+
+  void enrollCourse(@Param("studentId") Long studentId, @Param("courseId") Long courseId);
 }

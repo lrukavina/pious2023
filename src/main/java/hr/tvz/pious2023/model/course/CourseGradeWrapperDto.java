@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Builder
 public class CourseGradeWrapperDto {
-  List<CourseGradeDto> courses;
-  BigDecimal gpa;
-  Integer ects;
+  private List<CourseGradeDto> courses;
+  private BigDecimal gpa;
+  private Integer ects;
 }
