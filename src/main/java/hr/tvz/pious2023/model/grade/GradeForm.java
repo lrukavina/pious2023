@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 public class GradeForm {
-  private Long studentId;
+  private Long accountId;
   private Long courseId;
   private Integer grade;
 }
