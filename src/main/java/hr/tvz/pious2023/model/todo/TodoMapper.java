@@ -14,4 +14,14 @@ public class TodoMapper {
         .description(todo.getDescription())
         .build();
   }
+
+  public static Todo formToDomain(TodoForm form) {
+    return Todo.builder()
+        .fromDateTime(form.getFromDateTime())
+        .toDateTime(form.getToDateTime())
+        .header(form.getHeader())
+        .description(form.getDescription())
+        .accountId(form.getAccountId())
+        .build();
+  }
 }

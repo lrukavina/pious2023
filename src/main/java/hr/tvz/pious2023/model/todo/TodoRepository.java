@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface TodoRepository {
   List<Todo> fetchActiveByAccountId(Long id);
+
+  void saveTodo(Todo todo);
 }
