@@ -3,8 +3,11 @@ package hr.tvz.pious2023;
 import hr.tvz.pious2023.model.account.AccountForm;
 import hr.tvz.pious2023.model.student.StudentDto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /** Utils class for all entities in application. */
 public class Utils {
@@ -43,5 +46,13 @@ public class Utils {
 
   public static String buildUsername(AccountForm accountForm) {
     return (accountForm.getFirstName().charAt(0) + accountForm.getLastName()).toLowerCase();
+  }
+
+  public static BigDecimal calculateGpa(List<Integer> grades) {
+    BigDecimal gpa = new BigDecimal("0");
+    for (Integer grade : grades) {
+      gpa = gpa.add(BigDecimal.valueOf(grade));
+    }
+    return gpa.divide(BigDecimal.valueOf(grades.size()), 2, RoundingMode.HALF_UP);
   }
 }

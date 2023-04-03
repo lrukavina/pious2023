@@ -33,4 +33,9 @@ public class CourseController {
         .map(course -> ResponseEntity.status(HttpStatus.CREATED).body(course))
         .orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).build());
   }
+
+  @GetMapping("/grades/account/{id}")
+  public CourseGradeWrapperDto getGradesByAccountId(@PathVariable final String id) {
+    return courseService.fetchAllWithGradeByAccountId(Long.valueOf(id));
+  }
 }

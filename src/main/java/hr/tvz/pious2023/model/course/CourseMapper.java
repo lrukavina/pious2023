@@ -4,6 +4,7 @@ import hr.tvz.pious2023.model.professor.ProfessorDto;
 import hr.tvz.pious2023.model.professor.ProfessorMapper;
 import hr.tvz.pious2023.model.schedule.ScheduleForm;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /** Mapper class for {@link Course} */
@@ -43,5 +44,22 @@ public class CourseMapper {
         .toDateTime(form.getToDateTime())
         .courseId(courseId)
         .build();
+  }
+
+  public static CourseGradeDto domainToGradeDto(Course course, Integer grade) {
+    return CourseGradeDto.builder()
+        .id(course.getId())
+        .name(course.getName())
+        .ects(course.getEcts())
+        .description(course.getDescription())
+        .semester(course.getSemester())
+        .literature(course.getLiterature())
+        .grade(grade)
+        .build();
+  }
+
+  public static CourseGradeWrapperDto dtoToWrapperDto(
+      List<CourseGradeDto> courses, BigDecimal gpa, Integer ectPoint) {
+    return CourseGradeWrapperDto.builder().courses(courses).gpa(gpa).ects(ectPoint).build();
   }
 }

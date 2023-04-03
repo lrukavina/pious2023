@@ -1,13 +1,20 @@
 package hr.tvz.pious2023.model.course;
 
+import hr.tvz.pious2023.Utils;
+import hr.tvz.pious2023.exception.PiousException;
+import hr.tvz.pious2023.model.grade.Grade;
+import hr.tvz.pious2023.model.grade.GradeService;
 import hr.tvz.pious2023.model.professor.ProfessorDto;
 import hr.tvz.pious2023.model.professor.ProfessorService;
 import hr.tvz.pious2023.model.schedule.ScheduleForm;
 import hr.tvz.pious2023.model.schedule.ScheduleMapper;
 import hr.tvz.pious2023.model.schedule.ScheduleRepository;
+import hr.tvz.pious2023.model.student.Student;
+import hr.tvz.pious2023.model.student.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +27,9 @@ public class CourseServiceImpl implements CourseService {
   private final CourseRepository courseRepository;
   private final CourseValidator courseValidator;
   private final ScheduleRepository scheduleRepository;
+  private final StudentRepository studentRepository;
   private final ProfessorService professorService;
+  private final GradeService gradeService;
 
   @Override
   public CourseDto fetchById(Long id) {
@@ -32,6 +41,36 @@ public class CourseServiceImpl implements CourseService {
     return courseRepository.fetchAllByStudentId(id).stream()
         .map(CourseMapper::domainToDto)
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public CourseGradeWrapperDto fetchAllWithGradeByAccountId(Long id) {
+    Student student = studentRepository.fetchByAccountId(id);
+    if (student == null) {
+      throw new PiousException("Student ne postoji u bazi podataka.");
+    }
+
+    List<Course> courses = courseRepository.fetchAllByStudentId(student.getId());
+    List<Integer> grades = new ArrayList<>();
+    List<CourseGradeDto> courseGrades = new ArrayList<>();
+    Integer ects = 0;
+
+    for (Course course : courses) {
+      Grade courseGrade = gradeService.fetchByStudentsCourse(student.getId(), course.getId());
+      if (courseGrade == null) {
+        continue;
+      }
+
+      grades.add(courseGrade.getGrade());
+      courseGrades.add(CourseMapper.domainToGradeDto(course, courseGrade.getGrade()));
+      ects += course.getEcts();
+    }
+    if (grades.isEmpty()) {
+      return null;
+    }
+
+    BigDecimal gpa = Utils.calculateGpa(grades);
+    return CourseMapper.dtoToWrapperDto(courseGrades, gpa, ects);
   }
 
   @Override
