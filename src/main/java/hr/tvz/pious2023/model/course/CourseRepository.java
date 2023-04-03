@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 @Mapper
 public interface CourseRepository {
+
+  List<Course> fetchAll();
+
   Course fetchById(Long id);
 
   List<Course> fetchAllByStudentId(Long id);
@@ -21,4 +24,5 @@ public interface CourseRepository {
       @Param("professorId") Integer professorId, @Param("courseId") Long courseId);
 
   void enrollCourse(@Param("studentId") Long studentId, @Param("courseId") Long courseId);
+
 }

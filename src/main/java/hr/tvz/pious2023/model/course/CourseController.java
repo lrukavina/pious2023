@@ -26,6 +26,11 @@ public class CourseController {
     return courseService.fetchAllByAccountId(Long.valueOf(id));
   }
 
+  @GetMapping("/notEnrolled/account/{id}")
+  public List<CourseDto> getNotEnrolledByAccountId(@PathVariable final String id) {
+    return courseService.fetchAllNotEnrolledByAccountId(Long.valueOf(id));
+  }
+
   @PostMapping("/save")
   public ResponseEntity<CourseDto> saveCourse(@RequestBody final CourseForm courseForm) {
     return courseService

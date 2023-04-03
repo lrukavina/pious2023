@@ -11,6 +11,7 @@ import hr.tvz.pious2023.model.schedule.ScheduleMapper;
 import hr.tvz.pious2023.model.schedule.ScheduleRepository;
 import hr.tvz.pious2023.model.student.Student;
 import hr.tvz.pious2023.model.student.StudentRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -77,7 +78,10 @@ public class CourseServiceImpl implements CourseService {
   public List<CourseDto> fetchAllByAccountId(Long id) {
 
     List<Course> courses = courseRepository.fetchAllByAccountId(id);
+    return fetchAndMapCourseProfessors(courses);
+  }
 
+  private List<CourseDto> fetchAndMapCourseProfessors(List<Course> courses) {
     List<CourseDto> courseDtos = new ArrayList<>();
     for (Course course : courses) {
       List<ProfessorDto> professors = professorService.fetchByCourseId(course.getId());
@@ -108,6 +112,7 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
+  @Transactional
   public void enrollCourse(CourseEnrollmentForm courseEnrollmentForm) {
     Student student = studentRepository.fetchByAccountId(courseEnrollmentForm.getAccountId());
     if (student == null) {
@@ -120,5 +125,14 @@ public class CourseServiceImpl implements CourseService {
       throw new PiousException(
           "Kolegij nije moguće upisati. Molimo osvježite stranicu i pokušajte ponovno.");
     }
+  }
+
+  @Override
+  public List<CourseDto> fetchAllNotEnrolledByAccountId(Long id) {
+    List<Course> enrolledCourses = courseRepository.fetchAllByAccountId(id);
+    List<Course> allCourses = courseRepository.fetchAll();
+    List<Course> filteredCourses =
+        allCourses.stream().filter(course -> !enrolledCourses.contains(course)).toList();
+    return fetchAndMapCourseProfessors(filteredCourses);
   }
 }

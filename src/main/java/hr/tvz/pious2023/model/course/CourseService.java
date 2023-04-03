@@ -50,4 +50,6 @@ public interface CourseService {
    * @param courseEnrollmentForm Course enrollment form
    */
   void enrollCourse(CourseEnrollmentForm courseEnrollmentForm);
+
+  List<CourseDto> fetchAllNotEnrolledByAccountId(Long id);
 }
