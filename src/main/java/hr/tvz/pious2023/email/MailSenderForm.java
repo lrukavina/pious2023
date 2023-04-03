@@ -10,5 +10,5 @@ public class MailSenderForm {
   private String emailTo;
   private String header;
   private String body;
-  private Long studentId;
+  private Long accountId;
 }
