@@ -21,13 +21,13 @@ public class MailSenderServiceImpl implements MailSenderService {
 
   @Override
   public void sendEmail(MailSenderForm form) {
-    StudentDto studentDto = studentService.fetchById(form.getStudentId());
+    StudentDto studentDto = studentService.fetchByAccountId(form.getAccountId());
     try {
       MimeMessage mimeMessage = javaMailSender.createMimeMessage();
       MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
       mimeMessageHelper.setFrom(Constants.universityEmail);
-      mimeMessageHelper.setTo(form.getEmailTo());
+      mimeMessageHelper.setTo(Constants.universityEmail);
       mimeMessageHelper.setSubject(form.getHeader());
       mimeMessageHelper.setText(Utils.buildEmailBody(studentDto, form.getBody()), true);
       javaMailSender.send(mimeMessage);
