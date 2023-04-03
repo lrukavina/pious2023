@@ -15,7 +15,7 @@ public class TodoController {
   private final TodoService todoService;
 
   @GetMapping("/{id}")
-  public List<TodoDto> getByAccountId(@PathVariable final String id) {
-    return todoService.fetchByAccountId(Long.valueOf(id));
+  public List<TodoDto> getActiveByAccountId(@PathVariable final String id) {
+    return todoService.fetchActiveByAccountId(Long.valueOf(id));
   }
 }

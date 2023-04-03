@@ -13,8 +13,8 @@ public class TodoServiceImpl implements TodoService {
   private final TodoRepository todoRepository;
 
   @Override
-  public List<TodoDto> fetchByAccountId(Long id) {
-    return todoRepository.fetchByAccountId(id).stream()
+  public List<TodoDto> fetchActiveByAccountId(Long id) {
+    return todoRepository.fetchActiveByAccountId(id).stream()
         .map(TodoMapper::domainToDto)
         .collect(Collectors.toList());
   }

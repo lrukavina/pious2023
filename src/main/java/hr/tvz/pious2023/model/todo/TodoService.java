@@ -9,5 +9,5 @@ public interface TodoService {
    * @param id account id
    * @return Todos Dto objects
    */
-  List<TodoDto> fetchByAccountId(Long id);
+  List<TodoDto> fetchActiveByAccountId(Long id);
 }

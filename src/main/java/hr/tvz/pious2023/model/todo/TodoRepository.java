@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 @Mapper
 public interface TodoRepository {
-  List<Todo> fetchByAccountId(Long id);
+  List<Todo> fetchActiveByAccountId(Long id);
 }

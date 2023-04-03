@@ -22,11 +22,13 @@
         ${alias}.account_id
     </sql>
 
-    <select id="fetchByAccountId" parameterType="Long" resultMap="todoResultMap">
+    <select id="fetchActiveByAccountId" parameterType="Long" resultMap="todoResultMap">
         SELECT <include refid="todoSelectColumns">
                 <property name="alias" value="TODO"/>
                </include>
           FROM TODO
          WHERE ACCOUNT_ID = #{id}
+           AND TSTAMP_FROM &lt;= CURRENT_TIMESTAMP
+           AND TSTAMP_TO &gt;= CURRENT_TIMESTAMP
     </select>
 </mapper>
