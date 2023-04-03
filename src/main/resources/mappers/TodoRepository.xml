@@ -22,11 +22,26 @@
         ${alias}.account_id
     </sql>
 
-    <select id="fetchByAccountId" parameterType="Long" resultMap="todoResultMap">
+    <select id="fetchActiveByAccountId" parameterType="Long" resultMap="todoResultMap">
         SELECT <include refid="todoSelectColumns">
                 <property name="alias" value="TODO"/>
                </include>
           FROM TODO
          WHERE ACCOUNT_ID = #{id}
+           AND TSTAMP_FROM &lt;= CURRENT_TIMESTAMP
+           AND TSTAMP_TO &gt;= CURRENT_TIMESTAMP
     </select>
+
+    <insert id="saveTodo" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO todo   (tstamp_from,
+                            tstamp_to,
+                            header,
+                            description,
+                            account_id)
+        VALUES (#{fromDateTime, jdbcType=TIMESTAMP},
+                #{toDateTime, jdbcType=TIMESTAMP},
+                #{header, jdbcType=VARCHAR},
+                #{description, jdbcType=VARCHAR},
+                #{accountId, jdbcType=BIGINT})
+    </insert>
 </mapper>

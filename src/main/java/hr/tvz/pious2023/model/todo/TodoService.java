@@ -1,6 +1,7 @@
 package hr.tvz.pious2023.model.todo;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TodoService {
   /**
@@ -9,5 +10,7 @@ public interface TodoService {
    * @param id account id
    * @return Todos Dto objects
    */
-  List<TodoDto> fetchByAccountId(Long id);
+  List<TodoDto> fetchActiveByAccountId(Long id);
+
+  Optional<TodoDto> saveTodo(TodoForm todoForm);
 }
