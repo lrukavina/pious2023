@@ -4,9 +4,9 @@ package hr.tvz.pious2023.model.grade;
 public class GradeMapper {
   private GradeMapper() {}
 
-  public static Grade formToDomain(GradeForm form) {
+  public static Grade formToDomain(GradeForm form, Long studentId) {
     return Grade.builder()
-        .studentId(form.getStudentId())
+        .studentId(studentId)
         .courseId(form.getCourseId())
         .grade(form.getGrade())
         .build();
