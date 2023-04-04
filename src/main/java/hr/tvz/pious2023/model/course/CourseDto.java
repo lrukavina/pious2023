@@ -1,7 +1,7 @@
 package hr.tvz.pious2023.model.course;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.List;
 /** DTO class for {@link Course} */
 @Data
 @SuperBuilder
+@NoArgsConstructor
 public class CourseDto {
   private Long id;
   private String name;
