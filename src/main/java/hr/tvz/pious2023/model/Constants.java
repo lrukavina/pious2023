@@ -7,4 +7,6 @@ public class Constants {
   public static final String universityName = "Tehničko veleučilište u Zagrebu";
   public static final String universityEmail = "mojtvz.mail@gmail.com";
   public static final String emailExtension = "@tvz.hr";
+  public static final String INFO_CRON_JOB_ID = "info job";
+  public static final String INFO_CRON_SCHEDULE = "0 0/5 * 1/1 * ? *";
 }
