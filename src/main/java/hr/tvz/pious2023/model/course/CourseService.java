@@ -29,12 +29,20 @@ public interface CourseService {
   CourseGradeWrapperDto fetchAllWithGradeByAccountId(Long id);
 
   /**
-   * Fetches all courses for account by account id
+   * Fetches all courses for account by account id for student
    *
    * @param id account id
    * @return course dto objects
    */
   List<CourseDto> fetchAllByAccountId(Long id);
+
+  /**
+   * Fetches all courses for account by account id for professor
+   *
+   * @param id account id
+   * @return course dto objects
+   */
+  List<CourseDto> fetchAllByAccountIdForProfessor(Long id);
 
   /**
    * Saves new course

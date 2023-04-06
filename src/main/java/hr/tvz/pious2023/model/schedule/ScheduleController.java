@@ -22,4 +22,9 @@ public class ScheduleController {
   public List<ScheduleDto> getByStudentId(@PathVariable final String id) {
     return scheduleService.fetchByStudentId(Long.valueOf(id));
   }
+
+  @GetMapping("/account/{id}")
+  public List<ScheduleDto> getByAccountId(@PathVariable final String id) {
+    return scheduleService.fetchByAccountId(Long.valueOf(id));
+  }
 }
