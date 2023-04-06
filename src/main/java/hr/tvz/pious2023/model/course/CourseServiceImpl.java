@@ -81,6 +81,12 @@ public class CourseServiceImpl implements CourseService {
     return fetchAndMapCourseProfessors(courses);
   }
 
+  @Override
+  public List<CourseDto> fetchAllByAccountIdForProfessor(Long id) {
+    List<Course> courses = courseRepository.fetchAllByAccountIdForProfessor(id);
+    return fetchAndMapCourseProfessors(courses);
+  }
+
   private List<CourseDto> fetchAndMapCourseProfessors(List<Course> courses) {
     List<CourseDto> courseDtos = new ArrayList<>();
     for (Course course : courses) {

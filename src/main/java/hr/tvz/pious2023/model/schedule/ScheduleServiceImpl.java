@@ -47,6 +47,21 @@ public class ScheduleServiceImpl implements ScheduleService {
   }
 
   @Override
+  public List<ScheduleDto> fetchByAccountId(Long id) {
+    List<CourseDto> courseDtos = courseService.fetchAllByAccountId(id);
+
+    if (courseDtos.isEmpty()) {
+      courseDtos = courseService.fetchAllByAccountIdForProfessor(id);
+    }
+
+    List<ScheduleDto> scheduleDtos = new ArrayList<>();
+    for (CourseDto courseDto : courseDtos) {
+      scheduleDtos.addAll(fetchByCourseId(courseDto.getId()));
+    }
+    return scheduleDtos;
+  }
+
+  @Override
   public void saveSchedule(ScheduleForm scheduleForm) {
     scheduleRepository.saveSchedule(ScheduleMapper.formToDomain(scheduleForm));
   }

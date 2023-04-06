@@ -20,6 +20,14 @@ public interface ScheduleService {
   List<ScheduleDto> fetchByStudentId(Long id);
 
   /**
+   * Fetches Schedule by account id
+   *
+   * @param id account id
+   * @return schedule Dto objects
+   */
+  List<ScheduleDto> fetchByAccountId(Long id);
+
+  /**
    * Saves Schedule for course
    *
    * @param scheduleForm Schedule form

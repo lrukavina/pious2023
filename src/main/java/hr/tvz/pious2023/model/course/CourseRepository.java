@@ -18,11 +18,12 @@ public interface CourseRepository {
 
   List<Course> fetchAllByAccountId(Long id);
 
+  List<Course> fetchAllByAccountIdForProfessor(Long id);
+
   Integer saveCourse(Course course);
 
   void saveCourseProfessors(
       @Param("professorId") Integer professorId, @Param("courseId") Long courseId);
 
   void enrollCourse(@Param("studentId") Long studentId, @Param("courseId") Long courseId);
-
 }
