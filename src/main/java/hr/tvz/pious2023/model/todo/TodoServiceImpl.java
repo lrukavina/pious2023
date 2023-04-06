@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class TodoServiceImpl implements TodoService {
 
   private final TodoRepository todoRepository;
+  private final TodoValidator todoValidator;
 
   @Override
   public List<TodoDto> fetchActiveByAccountId(Long id) {
@@ -22,6 +23,7 @@ public class TodoServiceImpl implements TodoService {
 
   @Override
   public Optional<TodoDto> saveTodo(TodoForm todoForm) {
+    todoValidator.isFormValid(todoForm);
     Todo todo = TodoMapper.formToDomain(todoForm);
     todoRepository.saveTodo(todo);
     return Optional.of(TodoMapper.domainToDto(todo));

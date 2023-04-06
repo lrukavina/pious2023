@@ -26,7 +26,16 @@ public class CourseValidator {
 
     LocalDateTime dateTimeFrom = courseForm.getFromDateTime();
     LocalDateTime dateTimeTo = courseForm.getToDateTime();
+    isDateTimeValid(dateTimeFrom, dateTimeTo);
+  }
 
+  /**
+   * Checks are dates and times valid from form
+   *
+   * @param dateTimeFrom date time from
+   * @param dateTimeTo date time to
+   */
+  public void isDateTimeValid(LocalDateTime dateTimeFrom, LocalDateTime dateTimeTo) {
     if (dateTimeFrom == null || dateTimeTo == null) {
       throw new PiousException("Molimo popunite podatke o trajanju kolegija.");
     }
