@@ -38,7 +38,11 @@ public class Utils {
         .append("<br>")
         .append("<hr>")
         .append("<b><i> Molimo odgovorite na studentov e-mail: </i></b>")
-        .append("<a href = \"mailto: lrukavina@tvz.hr\">lrukavina@tvz.hr</a>")
+        .append("<a href = \"mailto: ")
+        .append(studentDto.getAccount().getEmail())
+        .append("\">")
+        .append(studentDto.getAccount().getEmail())
+        .append("</a>")
         .append("<br>")
         .append("<b><i>Ovo je automatska poruka, molimo nemojte odgovarati na nju. </b></i>")
         .toString();
