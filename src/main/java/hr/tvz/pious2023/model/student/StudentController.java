@@ -23,7 +23,7 @@ public class StudentController {
 
   @GetMapping("/{id}")
   public StudentDto getById(@PathVariable final String id) {
-    return studentService.fetchById(Long.valueOf(id));
+    return studentService.fetchByAccountId(Long.valueOf(id));
   }
 
   @PostMapping("/update")

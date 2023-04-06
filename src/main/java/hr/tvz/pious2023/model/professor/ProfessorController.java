@@ -18,7 +18,7 @@ public class ProfessorController {
 
   @GetMapping("/{id}")
   public ProfessorDto getById(@PathVariable final String id) {
-    return professorService.fetchById(Long.valueOf(id));
+    return professorService.fetchByAccountId(Long.valueOf(id));
   }
 
   @GetMapping("/dropdown")
