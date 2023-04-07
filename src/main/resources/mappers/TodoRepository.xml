@@ -28,8 +28,8 @@
                </include>
           FROM TODO
          WHERE ACCOUNT_ID = #{id}
-           AND TSTAMP_FROM &lt;= CURRENT_TIMESTAMP
-           AND TSTAMP_TO &gt;= CURRENT_TIMESTAMP
+           AND TSTAMP_FROM &lt;= DATEADD(HOUR, 2, CURRENT_TIMESTAMP)
+           AND TSTAMP_TO &gt;= DATEADD(HOUR, 2, CURRENT_TIMESTAMP)
     </select>
 
     <insert id="saveTodo" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
