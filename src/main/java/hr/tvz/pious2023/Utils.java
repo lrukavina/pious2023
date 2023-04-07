@@ -16,7 +16,7 @@ public class Utils {
   public static String dateTimeToString(LocalDateTime dateTime) {
     return dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy."))
         + " u "
-        + dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH"))
+        + dateTime.toLocalTime().plusHours(2).format(DateTimeFormatter.ofPattern("HH"))
         + "h";
   }
 
