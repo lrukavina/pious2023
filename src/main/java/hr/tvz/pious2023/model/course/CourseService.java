@@ -60,4 +60,6 @@ public interface CourseService {
   void enrollCourse(CourseEnrollmentForm courseEnrollmentForm);
 
   List<CourseDto> fetchAllNotEnrolledByAccountId(Long id);
+
+  boolean isStudentEnrolledOnCourse(Long courseId, Long studentId);
 }
