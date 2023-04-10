@@ -148,4 +148,9 @@ public class CourseServiceImpl implements CourseService {
         allCourses.stream().filter(course -> !enrolledCourses.contains(course)).toList();
     return fetchAndMapCourseProfessors(filteredCourses);
   }
+
+  @Override
+  public boolean isStudentEnrolledOnCourse(Long courseId, Long studentId) {
+    return courseRepository.fetchByCourseIdAndStudentId(courseId, studentId) != null;
+  }
 }

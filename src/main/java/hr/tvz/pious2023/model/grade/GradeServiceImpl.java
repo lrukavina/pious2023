@@ -1,6 +1,8 @@
 package hr.tvz.pious2023.model.grade;
 
 import hr.tvz.pious2023.exception.PiousException;
+import hr.tvz.pious2023.model.course.Course;
+import hr.tvz.pious2023.model.course.CourseRepository;
 import hr.tvz.pious2023.model.student.Student;
 import hr.tvz.pious2023.model.student.StudentRepository;
 import jakarta.transaction.Transactional;
@@ -15,6 +17,7 @@ public class GradeServiceImpl implements GradeService {
   private final GradeRepository gradeRepository;
   private final GradeValidator gradeValidator;
   private final StudentRepository studentRepository;
+  private final CourseRepository courseRepository;
 
   @Override
   public Grade fetchByStudentsCourse(Long studentId, Long courseId) {

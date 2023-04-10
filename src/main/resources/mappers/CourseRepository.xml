@@ -47,6 +47,17 @@
         WHERE student.id = #{id}
     </select>
 
+    <select id="fetchByCourseIdAndStudentId" resultMap="courseResultMap">
+        SELECT <include refid="courseSelectColumns">
+        <property name="alias" value="COURSE"/>
+    </include>
+        FROM course
+        INNER JOIN student_course on course.id = course_id
+        INNER JOIN student on student_id = student.id
+        WHERE course.id = #{courseId}
+          AND student.id = #{studentId}
+    </select>
+
     <select id="fetchAllByAccountId" parameterType="Long" resultMap="courseResultMap">
         SELECT <include refid="courseSelectColumns">
         <property name="alias" value="COURSE"/>
