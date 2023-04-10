@@ -77,7 +77,14 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public List<CourseDto> fetchAllByAccountId(Long id) {
 
-    List<Course> courses = courseRepository.fetchAllByAccountId(id);
+    List<Course> courses;
+    Student student = studentRepository.fetchByAccountId(id);
+
+    if (student != null) {
+      courses = courseRepository.fetchAllByAccountId(id);
+    } else {
+      courses = courseRepository.fetchAllByAccountIdForProfessor(id);
+    }
     return fetchAndMapCourseProfessors(courses);
   }
 
